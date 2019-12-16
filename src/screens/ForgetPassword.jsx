@@ -36,10 +36,7 @@ class ForgetPassword extends React.Component {
         </Form.Item>
       
         <Form.Item>
-          {/* {getFieldDecorator('remember', {
-            valuePropName: 'checked',
-            initialValue: true,
-          })(<Checkbox>Remember me</Checkbox>)} */}
+          
           <Button type="primary" htmlType="submit" className="login-form-button">
             Reset Password
           </Button>

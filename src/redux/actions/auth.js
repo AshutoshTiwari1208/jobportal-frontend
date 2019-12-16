@@ -60,9 +60,15 @@ export const signin=(signinData) =>(dispatch,getState,{axios})=>{
 }
 
 export const forgetpassword=(emailPassed)=>(dispatch,getState,{axios})=>{
-    // console.log("INSIDE ACTION:::::",emailPassed,emailPassed.username);
+    console.log("INSIDE ACTION:::::",emailPassed,emailPassed.username);
     return new axios.post(FORGET_PASSWORD,emailPassed.username).then(response=>{
        console.log("WWWWWW RESPONSE:::",response);
+        return response.data;
+    })
+}
+
+export const resetpassword =(resetData) => (dispatch,getState,{axios})=>{
+    return new axios.post(RESET_PASSWORD,resetData).then(response=>{
         return response.data;
     })
 }
