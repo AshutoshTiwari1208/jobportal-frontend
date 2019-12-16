@@ -9,7 +9,7 @@ import reqwest from 'reqwest';
 import {availablejobs} from "../redux/actions/jobs";
 import {connect} from "react-redux";
 import store from '../redux/store';//remove---
-import JobsList from '../components/JobsList'
+import JobsList from '../components/JobsView'
 import RecruiterList from '../components/RecruiterList';
 import ApplicantsList from "../components/ApplicantList.jsx";
 

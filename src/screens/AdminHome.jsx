@@ -6,7 +6,7 @@ export default class AdminHome extends Component {
     render() {
         return (
             <div>
-                <Navbar />
+                <Navbar text="Logout" to="/logout"/>
                 <div>
                     <Link to="/admin/candidates/">All Candidates</Link>
                 </div> 

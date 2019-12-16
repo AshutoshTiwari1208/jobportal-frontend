@@ -4,14 +4,14 @@ Button,
 Icon,
 Pagination} from 'antd';
 import { connect } from 'react-redux';
-import {getAppliedCandidates} from "../redux/actions/candidates";
+import {appliedjobslist} from "../redux/actions/jobs";
 
 
-class ApplicantList extends Component {
+class AppliedJobsList extends Component {
 
     state = {
         list: [],
-        page:1,
+         page:1,
         limit:6,
     }
 
@@ -20,8 +20,8 @@ componentDidMount() {
         page: this.state.page,
         limit:this.state.limit
     }
-    this.props.getAppliedCandidates(this.props.jobId,pagination).then(response=>{
-        
+    this.props.appliedjobslist(pagination).then(response=>{
+
         this.setState({//set state will render the view again..
         list: response.results,
         total:response.metadata.count,
@@ -37,7 +37,7 @@ onChange = page => {
         page: page,
         limit:this.state.limit
     }
-    this.props.getAppliedCandidates(this.props.jobId,pagination).then(response=>{
+    this.props.appliedjobslist(pagination).then(response=>{
         console.log("$$$$$$$$$$$$",response);
         this.setState({//set state will render the view again..
             total:response.metadata.count,
@@ -46,39 +46,37 @@ onChange = page => {
     })
   };
 
-    
+
+
+
+        
+
     render() {
         const { list } = this.state
         if(list.length<1){
             return(
-                <h2><center>No Applications Received</center></h2>
+                <h2><center>You have not applied to any Job !!</center></h2>
             )
         }
         return (
             <React.Fragment>
             {
-                list.map(candidate=>{
-                return (
-                    <Card style={{ width: 300 }}>
-                    <p>{candidate.name}</p>
-                    <p>{candidate.username}</p>
-                    <p>{candidate.uuid}</p>
-                    </Card>
-                ) 
-                })
-            }
-             <Pagination onChange={this.onChange} total={this.state.total} pageSize={this.state.limit}/>   
-             </React.Fragment>
-        )
 
+            list.map(jobs=>{
+              return (
+                <Card style={{ width: 300 }}>
+                <p>{jobs.job_title}</p>
+                <p>{jobs.job_description}</p>
+                <p>{jobs.uuid}</p>
+                </Card>
+              ) 
+            })
+        }
+        <Pagination onChange={this.onChange} total={this.state.total} pageSize={this.state.limit}/>
+        </React.Fragment>
+        );
     }
 }
 
-const mapStateToProps=(state)=>{
-    return ({
-        userData:state
-    })
-}
-
-export default connect(mapStateToProps, {getAppliedCandidates}) (ApplicantList);//take then send
+export default connect(null, {appliedjobslist}) (AppliedJobsList);//take then send
 

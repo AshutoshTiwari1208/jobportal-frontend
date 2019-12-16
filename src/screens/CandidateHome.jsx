@@ -3,13 +3,14 @@ import { List,
   Form,
   Avatar,
   Button,
-  Skeleton } from 'antd';
+  Skeleton,
+Pagination} from 'antd';
 
 import reqwest from 'reqwest';
 import {availablejobs} from "../redux/actions/jobs";
 import {connect} from "react-redux";
 import store from '../redux/store';//remove---
-import JobsList from './../components/JobsList'
+import JobsView from '../components/JobsView'
 
 
 class CandidateHome extends React.Component {
@@ -17,8 +18,17 @@ class CandidateHome extends React.Component {
     initLoading: false,
     loading: false,
     data: [],
+    current:1
   };
 
+
+  onChange = page => {
+    console.log(page);
+    this.setState({
+      current: page,
+
+    });
+  };
 
   render() {
 
@@ -26,7 +36,7 @@ class CandidateHome extends React.Component {
     return (
     <div>
       {/* <Navbar/> */}
-      <JobsList  availablejobs={availablejobs}/>
+      <JobsView  availablejobs={availablejobs}/>
       {/* <Footer/> */}
     </div>
     )

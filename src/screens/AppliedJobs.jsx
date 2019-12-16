@@ -10,9 +10,9 @@ import {availablejobs} from "../redux/actions/jobs";
 import {connect} from "react-redux";
 import store from '../redux/store';//remove---
 import JobsList from '../components/JobsView'
-import CandidateList from '../components/CandidatesList';
+import AppliedJobsList from '../components/AppliedJobsList';
 
-class CandidateHome extends React.Component {
+class AppliedJobs extends React.Component {
   state = {
     initLoading: false,
     loading: false,
@@ -27,7 +27,7 @@ class CandidateHome extends React.Component {
     return (
     <div>
       {/* <Navbar/> */}
-      <CandidateList allCandidates={allCandidates}/>
+      <AppliedJobsList allCandidates={allCandidates}/>
       {/* <Footer/> */}
     </div>
     )
@@ -42,6 +42,7 @@ const mapStateToProps=state=>{
 
 // CandidateHome=connect(mapStateToProps,{availablejobs})(CandidateHome);
 
-export default connect(mapStateToProps)(CandidateHome);
+export default connect(mapStateToProps)(AppliedJobs);
+
 
 

@@ -9,8 +9,8 @@ import reqwest from 'reqwest';
 import {availablejobs} from "../redux/actions/jobs";
 import {connect} from "react-redux";
 import store from '../redux/store';//remove---
-import JobsList from '../components/JobsList'
-// import JobList from '../components/JobListForAdmin';
+import JobsList from '../components/JobsView'
+// import JobsList from '../components/JobListForAdmin';
 
 
  class JobHome extends Component {
@@ -20,6 +20,8 @@ import JobsList from '../components/JobsList'
         data: [],
       };
 
+
+      
     render() {
         return (
             <div>
@@ -38,6 +40,4 @@ const mapStateToProps=state=>{
   }
 
   export default  connect(mapStateToProps)(JobHome);
-
-
 

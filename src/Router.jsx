@@ -15,6 +15,8 @@ import PostedJobs from "./screens/PostedJobs";
 import ApplicantsForJob from "./screens/ApplicantsToJob"
 import {ForgetPass} from "./screens/ForgetPassword";
 import {ResetPass} from "./screens/ResetPassword";
+import {ForgetPassStep} from "./screens/ForgetPassSteps";
+import AppliedJobs from "./screens/AppliedJobs";
 
 export const Router = () => (
     <AppRouter>
@@ -31,7 +33,8 @@ export const Router = () => (
         <Route exact path="/recruiter/jobs" component={PostedJobs} />
         <Route  path="/recruiter/jobs/:jobId" component={ApplicantsForJob} />
         <Route path="/forgetpassword" component={ForgetPass} />
-        <Route path="resetpassword" component={ResetPass} />
-
+        <Route path="/resetpassword" component={ResetPass} />
+        <Route path="/resetpasswordsteps" component={ForgetPassStep} />
+        <Route path="/candidate/jobs/applications" component={AppliedJobs} />
     </AppRouter>
 )

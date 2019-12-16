@@ -1,4 +1,4 @@
-import { USER_SIGNUP,USER_SIGNIN,FORGET_PASSWORD } from './../../constants/APIS';
+import { USER_SIGNUP,USER_SIGNIN,FORGET_PASSWORD,RESET_PASSWORD } from './../../constants/APIS';
 import { browserHistory } from 'react-router'
 // import { Signin } from '../../screens/Signin';
 
@@ -61,7 +61,7 @@ export const signin=(signinData) =>(dispatch,getState,{axios})=>{
 
 export const forgetpassword=(emailPassed)=>(dispatch,getState,{axios})=>{
     console.log("INSIDE ACTION:::::",emailPassed,emailPassed.username);
-    return new axios.post(FORGET_PASSWORD,emailPassed.username).then(response=>{
+    return new axios.post(FORGET_PASSWORD,{ username: emailPassed.username} ).then(response=>{
        console.log("WWWWWW RESPONSE:::",response);
         return response.data;
     })

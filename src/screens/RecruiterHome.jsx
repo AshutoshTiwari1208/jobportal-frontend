@@ -11,7 +11,7 @@ import reqwest from 'reqwest';
 import {availablejobs} from "../redux/actions/jobs";
 import {connect} from "react-redux";
 import store from '../redux/store';//remove---
-import JobsList from './../components/JobsList'
+import JobsList from '../components/JobsView'
 const { TextArea } = Input;
 
 
@@ -22,7 +22,7 @@ class RecruiterHome extends React.Component {
         this.props.form.validateFields((err, values) => {
           if (!err) {
               this.props.postJob(values).then(response=>{
-                  alert("Job is posted Check Console for details");
+                  alert("Job is posted Successfully");
                   console.log("$$$JOB POSTED$$$ :: ",response);
               });
             // this.props.signin(values).then(response=>{

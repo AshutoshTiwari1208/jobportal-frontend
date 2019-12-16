@@ -14,3 +14,4 @@ export const POSTED_JOBS="/jobs/posted";
 export const GET_CANDIDATE_BY_JOBID="/jobs/posted/:jobId";
 export const FORGET_PASSWORD="/forgetpassword";
 export const RESET_PASSWORD="/resetpassword";
+export const APPLIED_JOBS="/applications";

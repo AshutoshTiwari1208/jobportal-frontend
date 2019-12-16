@@ -1,72 +1,82 @@
 import React, { Component } from 'react'
 import { Card,
 Button,
-Icon} from 'antd';
-import {applyForJob, availablejobs} from "../redux/actions/jobs";
+Pagination} from 'antd';
+import { availablejobs} from "../redux/actions/jobs";
 import { connect } from 'react-redux';
 
 class JobsList extends Component {
 
-
     state = {
         list: [],
         isApplied:false,
+        page:1,
+        limit:6,
     }
 
 componentDidMount() {
+    const pagination={
+        page: this.state.page,
+        limit:this.state.limit
+    }
+
     console.log("#########",this.props.id);
-    this.props.availablejobs(this.props.id).then(response=>{
+    this.props.availablejobs(this.props.id,pagination).then(response=>{
         this.setState({//set state will render the view again..
-        list: response.results
+        list: response.results,
+        total:response.metadata.count,
+        list:response.results
         })
     })
 }
 
 
-    applyToJob=(e,jobUuid)=>{
-        
-        e.preventDefault();
 
-        let jobDetails= this.props.applyForJob(jobUuid).then(data=>{
-            const updatedJobs = this.state.list.map(job=>{
-                return job.uuid === jobUuid ? 
-                {
-                    ...job, isApplied: true
-                } : 
-                job
-            })
-            this.setState({
-                list: updatedJobs
-            })
-        });
 
+
+
+onChange = page => {
+    console.log("PAGE CLICKED ::::",page);
+    const pagination={
+        page: page,
+        limit:this.state.limit
     }
-
+    this.props.availablejobs(this.props.id,pagination).then(response=>{
+        console.log("$$$$$$$$$$$$",response);
+        this.setState({//set state will render the view again..
+            total:response.metadata.count,
+            list:response.results
+        });
+    })
+  };
         
 
     render() {
         const { list } = this.state
+        if(list.length<1){
+            return(
+                <h2><center>No Jobs to show at this moment....</center></h2>
+            )
+        }
         return (
-            list.map(item=>{
-              return (
-                <Card style={{ width: 300 }} hoverable>
-                <title>{item.job_title}</title>
-                <p>{item.job_description}</p>
-                <Button onClick={(e) => this.applyToJob(e,item.uuid)} disabled={item.isApplied}>Apply</Button>
-                </Card>
-              ) 
-            })
+            <React.Fragment>
+            {
+                list.map(item=>{
+                return (
+                    <Card style={{ width: 300 }} hoverable>
+                    <title>{item.job_title}</title>
+                    <p>{item.job_description}</p>
+                    <Button onClick={(e) => this.applyToJob(e,item.uuid)} disabled={item.isApplied}>Apply</Button>
+                    </Card>
+                ) 
+                })
+            }
+            <Pagination onChange={this.onChange} total={this.state.total} pageSize={this.state.limit}/>   
+            </React.Fragment>
         );
     }
 }
 
-const mapStateToProps=(state)=>{
-    return ({
-        userData:state
-    })
-}
 
-
-
-export default connect(mapStateToProps, {applyForJob, availablejobs}) (JobsList);//take then send
+export default connect(null, { availablejobs}) (JobsList);//take then send
 

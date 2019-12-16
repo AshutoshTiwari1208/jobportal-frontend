@@ -23,14 +23,23 @@ axiosInstance.interceptors.request.use(async config => {
 axiosInstance.interceptors.response.use(response => {
     return response.data
 }, err=>{
+
+    // const reject = [401,];
+
+    // reject.indexOf(err.response.status > -1){
+    //     alert(err.response.data.errors);
+    // }
  
     if(err.response.status==422){
-        alert(err.response.data.errors);
 
     }
     else if(err.response.data.code==401){
 
-        alert(err.response.data.errors);
+        // alert(err.response.data.errors);
+    }
+    else{
+        // alert(err.response.data.errors);
+        console.log("EEROORRR:::::",err.response);
     }
     // else if(err.respone.status==401){
     //     alert(err.response.data.errors);

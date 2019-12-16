@@ -1,7 +1,8 @@
-import { AVAILABLE_JOBS, APPLY_JOB,DELETE_A_JOB,ALL_JOBS,POST_JOB,POSTED_JOBS } from './../../constants/APIS';
+import { AVAILABLE_JOBS, APPLY_JOB,DELETE_A_JOB,ALL_JOBS,POST_JOB,POSTED_JOBS,APPLIED_JOBS } from './../../constants/APIS';
 
-export const availablejobs=(userId) => (dispatch,getState,{axios})=>{
-    return new axios.get(AVAILABLE_JOBS,userId).then(response=>{
+export const availablejobs= (meta) => (dispatch,getState,{axios})=>{
+    console.log(meta)
+    return new axios.get(AVAILABLE_JOBS,{ params: meta} ).then(response=>{
         return response.data;
     })
 }
@@ -32,8 +33,15 @@ export const postJob=(jobData)=>(dispatch,getState,{axios})=>{
     })
 }
 
-export const allJobsByRecruiter=()=>(dispatch,getState,{axios})=>{
-    return new axios.get(POSTED_JOBS).then(response=>{
+export const allJobsByRecruiter=(meta)=>(dispatch,getState,{axios})=>{
+    return new axios.get(POSTED_JOBS,{params:meta}).then(response=>{
+        return response.data;
+    })
+}
+
+
+export const appliedjobslist=(meta)=>(dispatch,getStet,{axios})=>{
+    return new axios.get(APPLIED_JOBS,{params:meta}).then(response=>{
         return response.data;
     })
 }

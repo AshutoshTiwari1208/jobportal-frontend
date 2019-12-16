@@ -34,7 +34,6 @@ import {
         if (!err) {
           // console.log('Received values of form: ', values);
           this.props.signup(values).then((data)=>{
-              alert("Hello " + data.username + "    Click OK to browse Jobs");           
               if(data.role=="0"){
                   this.props.history.push(CANDIDATE_HOME);
               }
