@@ -13,6 +13,7 @@ const openNotificationWithIcon = (type,message,desc) => {
         description: desc,
     });
   };
+  
 export const axiosInstance = configureAxios(); 
 
 //interceptors for request
