@@ -5,9 +5,7 @@ export default class Home extends Component {
     render() {
         return (
             <div>
-                <Navbar text="signup" to="/admin"/>
-                
-                
+                <Navbar text="signin" to="/signin"/>   
             </div>
         )
     }

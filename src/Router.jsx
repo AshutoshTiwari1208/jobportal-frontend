@@ -37,5 +37,6 @@ export const Router = () => (
         <Route path="/resetpasswordsteps" component={ForgetPassStep} />
         <Route path="/candidate/jobs/applications" component={AuthenticationControl(AppliedJobs)} />
         <Route path="/adminsignin" component={SigninAdmin}/>
+
     </AppRouter>
 )

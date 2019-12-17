@@ -10,15 +10,23 @@ import {
    } from 'antd';
 import {postJob} from  "../redux/actions/jobs";
 import {connect} from "react-redux";
+import { Redirect } from 'react-router';
+
 const { TextArea } = Input;
 
 class RecruiterHome extends React.Component {
+  state={
+    redirect:false
+  }
     handleSubmit = e => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
           if (!err) {
               this.props.postJob(values).then(response=>{
-                  alert("Job is posted Successfully");
+                this.setState({
+                  redirect:true
+                })
+                  // alert("Job is posted Successfully");
                   console.log("$$$JOB POSTED$$$ :: ",response);
               });
           }
@@ -26,6 +34,9 @@ class RecruiterHome extends React.Component {
       };
     
       render() {
+        if (this.state.redirect) {
+          return <Redirect to='/recruiter/jobs'/>;
+        }
         const { getFieldDecorator } = this.props.form;
         return (
           <div>

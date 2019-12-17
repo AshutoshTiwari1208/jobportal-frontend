@@ -41,8 +41,6 @@ class CandidateHome extends React.Component {
             <JobsView  availablejobs={availablejobs}/>
           </div>
       </div>
-
-  
     )
   }
 }

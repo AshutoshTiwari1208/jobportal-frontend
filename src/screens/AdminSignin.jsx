@@ -34,7 +34,6 @@ class AdminSignin extends React.Component {
     return (
       <div>
       <Navbar text="Not An Admin?" to="/signin"/>
-
       <Form onSubmit={this.handleSubmit} className="login-form" className="wrapperForm">
           <h2><span class="adminh2">ADMIN</span> SIGNIN WINDOW</h2>
         <Form.Item>

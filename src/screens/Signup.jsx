@@ -108,8 +108,10 @@ import {
         <div >
           
         <Navbar text="Signin" to="/signin"/>
+        <h3 align="center"><span  className="h2WrapperSignup">SignUp for a New Account</span></h3>
 
-        <Form {...formItemLayout} onSubmit={this.handleSubmit} className="wrapperForm">
+        <Form {...formItemLayout} onSubmit={this.handleSubmit} className="wrapperFormSignup">
+
           <Form.Item label="E-Mail">
             {getFieldDecorator('username', { //check
               rules: [

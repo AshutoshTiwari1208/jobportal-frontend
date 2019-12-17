@@ -46,10 +46,17 @@ class SigninForm extends React.Component {
       <div align="left">
              <Link to={ADMIN_SIGNIN}><span  className="links"><u>Admin Signin Window</u></span></Link>
           </div> 
+          <h3 align="center"><span  className="h2WrapperSignup">SignIn to Existing Account</span></h3>
+
       <Form onSubmit={this.handleSubmit} className="login-form" className="wrapperForm">
+
         <Form.Item>
           {getFieldDecorator('username', {
-            rules: [{ required: true, message: 'Please input your username!' }],
+            rules: [{ required: true, message: 'Please input your username!' },
+            {
+              type: 'email',
+              message: 'The input is not valid E-mail!',
+            }],
           })(
             <Input
               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}

@@ -44,7 +44,7 @@ Form{
 
 .wrapperForm{
   margin-left:25% !important;
-  margin-top:10% !important;
+  margin-top:6% !important;
   width:60% !important;
 }
 
@@ -91,6 +91,7 @@ h4, h2 {
   width:30%;
   margin-top:3%;
 }
+
 .linksDivRight{
   width:30%;
   margin-left: 70% !important;
@@ -103,7 +104,7 @@ h4, h2 {
 }
 
 #normal_signin_username{
-  margin-top:5%;
+  /* margin-top:5%; */
 }
 
 .spin{
@@ -111,3 +112,20 @@ h4, h2 {
   font-size: 40%;
 
 }
+
+.wrapperFormSignup{
+  margin-left:16% !important;
+  margin-top:5% !important;
+  width:50% !important;}
+
+  .h2WrapperSignup{
+    margin-top:10% !important;
+    color:blue;
+    text-decoration: underline;
+    text-decoration-color: mediumblue ;
+    text-shadow: 1px 1px gray;
+  }
+
+  .login-form{
+    width:70%;
+  }
