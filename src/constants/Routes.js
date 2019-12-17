@@ -12,5 +12,5 @@ export const AVAILABLE_JOBS="/candidate/jobs";
 export const VIEW_APPLIED_JOBS="/candidate/jobs/applications";
 export const ADMIN_DASHBOARD="/admin";
 export const ADMIN_SIGNIN="/adminsignin";
-export const RESET_PASSWORD="/resetpassword";
+export const RESET_PASSWORD="/resetpasswordsteps";
 

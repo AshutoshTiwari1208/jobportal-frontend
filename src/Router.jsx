@@ -20,7 +20,7 @@ import {AuthenticationControl} from "./components/AuthenticationControl";
 import {SigninAdmin} from "./screens/AdminSignin";
 export const Router = () => (
     <AppRouter>
-        <Route exact path="/"           component={Home} />
+        <Route exact path="/"           component={Signin} />
         <Route path="/signup"           component={Signup} />
         <Route path="/signin"           component={Signin} />
         <Route path="/dashboard"        component={App} />
