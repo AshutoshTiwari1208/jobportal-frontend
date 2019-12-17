@@ -8,20 +8,15 @@ import {
     Icon,
     Radio,
   } from 'antd';
-  
+  import Navbar from "../components/Navbar";
   import { signup } from "./../redux/actions/auth"
-
   import { connect } from 'react-redux'
-  import {AVAILABLE_JOBS} from "../constants/APIS"
-  
-  import { CANDIDATE_HOME } from './../constants/Routes';
-
-
+  import { CANDIDATE_HOME,RECRUITER_HOME,SIGNIN } from './../constants/Routes';
 
   const AutoCompleteOption = AutoComplete.Option;
   
-
   class SignupForm extends React.Component {
+
     state = {
       confirmDirty: false,
       autoCompleteResult: [],
@@ -37,8 +32,10 @@ import {
               if(data.role=="0"){
                   this.props.history.push(CANDIDATE_HOME);
               }
-              //   // this.props.history.push()
-              // }
+              else if(data.role=="1"){
+                this.props.history.push(RECRUITER_HOME);
+              }
+        
           })
         }
       });
@@ -108,7 +105,11 @@ import {
       ));
   
       return (
-        <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+        <div >
+          
+        <Navbar text="Signin" to="/signin"/>
+
+        <Form {...formItemLayout} onSubmit={this.handleSubmit} className="wrapperForm">
           <Form.Item label="E-Mail">
             {getFieldDecorator('username', { //check
               rules: [
@@ -163,7 +164,7 @@ import {
             })(<Input />)}
           </Form.Item>
 
-          <Form.Item label="Choose Your Profile">
+          <Form.Item label="Your Profile">
             {getFieldDecorator('role',{
                 rules:[{required: true,message: "Please select your role!"}]
             })(
@@ -174,16 +175,16 @@ import {
             )}
           </Form.Item>
 
-   
-    
-
           <Form.Item {...tailFormItemLayout}>
             <Button type="primary" htmlType="submit">
               Signup 
             </Button>
           </Form.Item>
         </Form>
-
+       
+          
+       </div>
+            
       );
     }
   }

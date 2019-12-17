@@ -1,17 +1,9 @@
 import React, { Component } from 'react'
-import { List,
-  Form,
-  Avatar,
-  Button,
-  Skeleton } from 'antd';
-
-import reqwest from 'reqwest';
-import {availablejobs} from "../redux/actions/jobs";
 import {connect} from "react-redux";
-import store from '../redux/store';//remove---
-import JobsList from '../components/JobsView'
-import RecruiterList from '../components/RecruiterList';
 import ApplicantsList from "../components/ApplicantList.jsx";
+import Navbar from './../components/Navbar';
+import { Link } from 'react-router-dom'
+import {SIGNOUT} from "../constants/Routes";
 
 
  class ApplicantsForJob extends Component {
@@ -24,10 +16,14 @@ import ApplicantsList from "../components/ApplicantList.jsx";
     render() {
         return (
             <div>
-                 {/* <Navbar/> */}
+                <Navbar text="Logout" to={SIGNOUT}/>
+                <div align="left" className="linksDivLeft">
+                    <Link to="/recruiter/jobs"><span  className="links"><u>View Published Jobs</u></span></Link>
+                </div> 
+                <div align="right" className="linksDivRight">
+                    <Link to="/recruiter"><span  className="linksRight"><u>Post New Job</u></span></Link>
+                </div> 
                   <ApplicantsList jobId={this.props.match.params.jobId}/>
-                  {/* <h1>dffsdf</h1> */}
-                {/* <Footer/> */}
             </div>
         )
     }

@@ -1,43 +1,42 @@
-import React, { Component } from 'react'
-import { List,
-  Form,
-  Avatar,
-  Button,
-  Skeleton } from 'antd';
+import React, { Component } from "react";
+import Navbar from "./../components/Navbar";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import JobsList from "../components/JobsView";
+import {SIGNOUT,ADMIN_DASHBOARD} from "../constants/Routes";
 
-import reqwest from 'reqwest';
-import {availablejobs} from "../redux/actions/jobs";
-import {connect} from "react-redux";
-import store from '../redux/store';//remove---
-import JobsList from '../components/JobsView'
-// import JobsList from '../components/JobListForAdmin';
+class JobHome extends Component {
+	state = {
+		initLoading: false,
+		loading: false,
+		data: []
+	};
 
-
- class JobHome extends Component {
-    state = {
-        initLoading: false,
-        loading: false,
-        data: [],
-      };
-
-
-      
-    render() {
-        return (
-            <div>
-                 {/* <Navbar/> */}
-                  <JobsList />
-                {/* <Footer/> */}
-            </div>
-        )
-    }
+	render() {
+		return (
+			<div>
+				<div>
+					<Navbar text="Logout" to={SIGNOUT}/>
+				</div>
+				<div align="left" className="linksDivLeft">
+					<Link to={ADMIN_DASHBOARD}>
+						<span className="links">
+							<u>Dashboard</u>
+						</span>
+					</Link>
+				</div >
+                <div className="listCards">
+                    <JobsList />
+                </div>
+			</div>
+		);
+	}
 }
 
-const mapStateToProps=state=>{
-    return{
-      candidateData:state
-    }
-  }
+const mapStateToProps = state => {
+	return {
+		candidateData: state
+	};
+};
 
-  export default  connect(mapStateToProps)(JobHome);
-
+export default connect(mapStateToProps)(JobHome);

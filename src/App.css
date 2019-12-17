@@ -41,3 +41,73 @@
 Form{
   width:40%;
 }
+
+.wrapperForm{
+  margin-left:25% !important;
+  margin-top:10% !important;
+  width:60% !important;
+}
+
+.wrapperForgetPass{
+  margin-left:25% !important;
+  margin-top:10% !important;
+  margin-right:20% !important;
+}
+
+.listCards{
+  margin-left:25% !important;
+  margin-top:5% !important;
+  /* margin-right:20% !important; */
+  width:60% !important;
+}
+
+.cards{
+  margin-bottom:7% !important;
+}
+
+
+h4, h2 {
+  margin: 0 ;
+}
+
+.links{
+  margin-left: 2% !important;
+  font-size: 1.2em !important;
+  width:20% !important;
+
+}
+
+.linksRight{
+  margin-right: 2% !important;
+  font-size: 1.2em !important;
+  margin-top: -10% !important;
+
+}
+.steps-action{
+  margin-top:-12% !important;
+}
+
+.linksDivLeft{
+  width:30%;
+  margin-top:3%;
+}
+.linksDivRight{
+  width:30%;
+  margin-left: 70% !important;
+  margin-top: -2% !important;
+}
+
+.adminh2{
+  color:blue;
+  text-decoration:underline;
+}
+
+#normal_signin_username{
+  margin-top:5%;
+}
+
+.spin{
+  margin-left:40%;
+  font-size: 40%;
+
+}

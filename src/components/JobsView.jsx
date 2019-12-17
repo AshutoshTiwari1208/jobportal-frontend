@@ -101,24 +101,26 @@ componentDidMount() {
 
         return (
             <React.Fragment>
+                <h2 align="center">LIST OF JOBS</h2>
                 {
                 this.props.userData.auth.userdetails.role=="0" ? (
                     list.map(item=>{
                         return (
-                          <Card style={{ width: 300 }} hoverable>
-                          <title>{item.job_title}</title>
-                          <p>{item.job_description}</p>
-                          <Button onClick={(e) => this.applyToJob(e,item.uuid)} disabled={item.isApplied}>Apply</Button>
-                          </Card>
-                        ) 
+                            <div className="cards">
+                             <Card title={item.job_title}><p>{item.job_description}</p>
+                             <Button type="primary" onClick={(e) => this.applyToJob(e,item.uuid)} disabled={item.isApplied}>Apply</Button>
+                             </Card>
+                            </div>
+                          ) 
                 })) : 
                 list.map(item=>{
                     return (
-                      <Card style={{ width: 300 }} hoverable>
-                      <title>{item.job_title}</title>
-                      <p>{item.job_description}</p>
-                      <Button onClick={(e) => this.delJob(e,item.uuid)} disabled={item.isApplied}>Delete</Button>
-                      </Card>
+                        <div className="cards">
+                            <Card title={item.job_title}>
+                            <p>{item.job_description}</p>
+                             <Button type="danger" onClick={(e) => this.delJob(e,item.uuid)} disabled={item.isApplied}>Delete</Button>
+                             </Card>
+                      </div>
                     ) 
                 })
                 }

@@ -6,8 +6,8 @@ export default class Home extends Component {
         return (
             <div>
                 <Navbar text="signup" to="/admin"/>
-                {/* <Container /> */}
-                {/* <Footer /> */}
+                
+                
             </div>
         )
     }

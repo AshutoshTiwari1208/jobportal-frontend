@@ -79,16 +79,18 @@ onChange = page => {
             )
         }
         return (
+            
             <React.Fragment>
+                <h2 align="center">LIST OF CANDIDATES</h2>
+
             {
                 list.map(candidate=>{
                 return (
-                    <Card style={{ width: 300 }}>
-                    <p>{candidate.name}</p>
-                    <p>{candidate.username}</p>
-                    <p>{candidate.uuid}</p>
-                    <Button type="danger" onClick={(e) => this.deleteCandidate(e,candidate.uuid)} disabled={candidate.isApplied}>Delete</Button>
-                    </Card>
+                    <div className="cards">
+                    <Card title={candidate.username}><p>Name:{candidate.name}<br/>ID:{candidate.uuid}</p>
+                     <Button type="danger" onClick={(e) =>  this.deleteCandidate(e,candidate.uuid)} disabled={candidate.isApplied}>Delete</Button>
+                     </Card>
+              </div>
                 ) 
                 })
             }

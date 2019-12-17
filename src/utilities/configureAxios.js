@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {notification} from 'antd';
 
 const configureAxios = () => {
     return axios.create({
@@ -6,7 +7,12 @@ const configureAxios = () => {
         timeout: 30000
     })
 }
-
+const openNotificationWithIcon = (type,message,desc) => {
+    notification[type]({
+        message: message,
+        description: desc,
+    });
+  };
 export const axiosInstance = configureAxios(); 
 
 //interceptors for request
@@ -24,22 +30,20 @@ axiosInstance.interceptors.response.use(response => {
     return response.data
 }, err=>{
 
-    // const reject = [401,];
-
-    // reject.indexOf(err.response.status > -1){
-    //     alert(err.response.data.errors);
-    // }
- 
     if(err.response.status==422){
+        openNotificationWithIcon('error',"ERROR OCCURED",err.response.data.errors);
+
 
     }
     else if(err.response.data.code==401){
 
-        // alert(err.response.data.errors);
+        openNotificationWithIcon('error',"ERROR OCCURED",err.response.data.errors);
     }
     else{
         // alert(err.response.data.errors);
         console.log("EEROORRR:::::",err.response);
+        openNotificationWithIcon('error',"ERROR OCCURED",err.response.data.errors);
+
     }
     // else if(err.respone.status==401){
     //     alert(err.response.data.errors);

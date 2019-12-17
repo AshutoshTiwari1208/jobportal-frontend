@@ -5,16 +5,13 @@ export default function(state={
     switch(action.type){
 
         case "SIGNIN_USER" : return {
-            ...state,
             userdetails: action.payload,
         }
         case "SIGNUP_USER": return{
-            ...state,
             userdetails:action.payload,
         }
-        case "LOGOUT_USER": return{
-            ...state,
-            userdetails:null
+        case "SIGNOUT" : return {
+            userdetails:{}
         }
         default: 
             return state

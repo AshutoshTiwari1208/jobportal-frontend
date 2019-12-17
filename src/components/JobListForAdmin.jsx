@@ -63,11 +63,11 @@ onChange = page => {
             {
                 list.map(item=>{
                 return (
-                    <Card style={{ width: 300 }} hoverable>
-                    <title>{item.job_title}</title>
-                    <p>{item.job_description}</p>
-                    <Button onClick={(e) => this.applyToJob(e,item.uuid)} disabled={item.isApplied}>Apply</Button>
-                    </Card>
+                    <div className="cards">
+                            <Card title={item.job_title}><p>{item.job_description}</p>
+                            <Button type="danger" onClick={(e) => this.applyToJob(e,item.uuid)} disabled={item.isApplied}>Apply</Button>
+                            </Card>
+                    </div>
                 ) 
                 })
             }

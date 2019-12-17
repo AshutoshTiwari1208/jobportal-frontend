@@ -72,16 +72,15 @@ deleteRecruiter=(e,recruiterUuid)=>{//uuid kahan se ayegi jispe click hoga
         }
         return(
             <React.Fragment>
+                <h2 align="center">LIST OF RECRUITERS</h2>
             {
             list.map(recruiter=>{
                 return(
-                    <Card style={{ width: 300 }}>
-                    <p>{recruiter.name}</p>
-                    <p>{recruiter.username}</p>
-                    <p>{recruiter.uuid}</p>
+                    <div className="cards">
+                    <Card title={recruiter.username}><p>{recruiter.name}<br/>ID:{recruiter.uuid}</p>
                     <Button type="danger" onClick={(e) => this.deleteRecruiter(e,recruiter.uuid)} disabled={recruiter.isApplied}>Delete</Button>
-                    {/* <Button type="primary" onClick={(e) => this.jobsByRecruiter(e,recruiter.uuid)} disabled={recruiter.isApplied}>Yet to Come</Button> */}
-                    </Card>
+                    </Card>           
+                 </div>
                 )
 
             })

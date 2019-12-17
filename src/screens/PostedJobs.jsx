@@ -1,16 +1,8 @@
 import React, { Component } from 'react'
-import { List,
-  Form,
-  Avatar,
-  Button,
-  Skeleton } from 'antd';
-
-import reqwest from 'reqwest';
-import {availablejobs} from "../redux/actions/jobs";
 import {connect} from "react-redux";
-import store from '../redux/store';//remove---
-import JobsList from '../components/JobsView'
 import PostedJobList from "../components/JobsByRecruiter"
+import Navbar from './../components/Navbar';
+import { Link } from 'react-router-dom'
 
  class PostedJobs extends Component {
     state = {
@@ -22,9 +14,13 @@ import PostedJobList from "../components/JobsByRecruiter"
     render() {
         return (
             <div>
-                 {/* <Navbar/> */}
-                  <PostedJobList />
-                {/* <Footer/> */}
+                <Navbar text="Logout" to="/signout"/>
+                <div align="left">
+                    <Link to="/recruiter"><span  className="links"><u>Post a Job !!</u></span></Link>
+                </div> 
+                <div className="listCards">
+                    <PostedJobList />
+                </div>     
             </div>
         )
     }

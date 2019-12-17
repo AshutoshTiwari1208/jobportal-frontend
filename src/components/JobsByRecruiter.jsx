@@ -29,7 +29,7 @@ componentDidMount() {
     this.props.allJobsByRecruiter(pagination).then(response=>{
         this.setState({//check what coming inside list
             list:response.results,
-            total:response.metadata.count,
+            total:response.count,
             list:response.results
         })
     })
@@ -66,12 +66,12 @@ onChange = page => {
             list.map(jobs=>{
                 let linkto="/recruiter/jobs/"+jobs.uuid;
                 return(
-                    <Card style={{ width: 300 }}>
-                    <p>{jobs.job_title}</p>
-                    <p>{jobs.job_description}</p>
-                    <p>{jobs.uuid}</p>
+
+                    <div className="cards">
+                    <Card title={jobs.job_title}><p>{jobs.job_description}<br/>ID:{jobs.uuid}</p>
                     <Link to={linkto}>View Applications</Link>
                     </Card>
+              </div>
                 )
 
             })

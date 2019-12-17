@@ -1,16 +1,10 @@
 import React, { Component } from 'react'
-import { List,
-  Form,
-  Avatar,
-  Button,
-  Skeleton } from 'antd';
 
-import reqwest from 'reqwest';
-import {availablejobs} from "../redux/actions/jobs";
 import {connect} from "react-redux";
-import store from '../redux/store';//remove---
-import JobsList from '../components/JobsView'
 import AppliedJobsList from '../components/AppliedJobsList';
+import Navbar from './../components/Navbar';
+import { Link } from 'react-router-dom'
+import {SIGNOUT,AVAILABLE_JOBS} from "../constants/Routes";
 
 class AppliedJobs extends React.Component {
   state = {
@@ -19,16 +13,21 @@ class AppliedJobs extends React.Component {
     data: [],
   };
 
-
-
+  
   render() {
 
     const { allCandidates } = this.props; //took out function and passed
     return (
     <div>
-      {/* <Navbar/> */}
+      <div>
+        <Navbar text="Logout" to={SIGNOUT}/>
+     </div>
+     <div align="left">
+        <Link to={AVAILABLE_JOBS}><span  className="links"><u>View Available Jobs</u></span></Link>
+    </div > 
+    <div className="listCards">
       <AppliedJobsList allCandidates={allCandidates}/>
-      {/* <Footer/> */}
+      </div>
     </div>
     )
   }
@@ -38,9 +37,6 @@ const mapStateToProps=state=>{
     candidateData:state
   }
 }
-
-
-// CandidateHome=connect(mapStateToProps,{availablejobs})(CandidateHome);
 
 export default connect(mapStateToProps)(AppliedJobs);
 

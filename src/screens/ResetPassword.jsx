@@ -7,17 +7,9 @@ class ResetPassword extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
-      if (!err) { //????THIS IS WHICH ERROR ???
+      if (!err) { 
         console.log("VALUE =GONE TO RESETPASS STEPS VALUE-->",values);
-        this.props.resetpassword(values); //just as calling a function
-         //this.props.resetpassword function  is made available here by ./steps through arguments.
-        
-
-            //  this.props.history.push(RECRUITER_HOME);
-          //  else
-          //  this.props.history.push(ADMIN_HOME);
-        
-        
+        this.props.resetpassword(values);    
 
       }
     });
@@ -92,10 +84,6 @@ class ResetPassword extends React.Component {
           )}
         </Form.Item>
         <Form.Item>
-          {/* {getFieldDecorator('remember', {
-            valuePropName: 'checked',
-            initialValue: true,
-          })(<Checkbox>Remember me</Checkbox>)} */}
           <Button type="primary" htmlType="submit" className="login-form-button">
             Reset Password
           </Button>
@@ -106,6 +94,3 @@ class ResetPassword extends React.Component {
 }
 
 export const ResetPass=Form.create({name:"reset_form"})(ResetPassword);
- 
-
-// ReactDOM.render(<Signin />, mountNode);

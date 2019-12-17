@@ -1,5 +1,6 @@
 import { USER_SIGNUP,USER_SIGNIN,FORGET_PASSWORD,RESET_PASSWORD } from './../../constants/APIS';
 import { browserHistory } from 'react-router'
+
 // import { Signin } from '../../screens/Signin';
 
 
@@ -71,4 +72,15 @@ export const resetpassword =(resetData) => (dispatch,getState,{axios})=>{
     return new axios.post(RESET_PASSWORD,resetData).then(response=>{
         return response.data;
     })
+}
+
+export const signout=()=>(dispatch,getState,{axios}) =>{
+    dispatch({
+        type:"SIGNOUT",
+        payload:null
+    });
+    axios.defaults.headers.common["Authorization"]="";
+    return null;
+
+
 }

@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import Navbar from './../components/Navbar';
+import { Link } from 'react-router-dom'
+import {SIGNOUT} from "../constants/Routes";
 import { 
   Form,
     Input,
@@ -6,15 +9,8 @@ import {
     Icon,
    } from 'antd';
 import {postJob} from  "../redux/actions/jobs";
-
-import reqwest from 'reqwest';
-import {availablejobs} from "../redux/actions/jobs";
 import {connect} from "react-redux";
-import store from '../redux/store';//remove---
-import JobsList from '../components/JobsView'
 const { TextArea } = Input;
-
-
 
 class RecruiterHome extends React.Component {
     handleSubmit = e => {
@@ -25,19 +21,6 @@ class RecruiterHome extends React.Component {
                   alert("Job is posted Successfully");
                   console.log("$$$JOB POSTED$$$ :: ",response);
               });
-            // this.props.signin(values).then(response=>{
-             
-            //   console.log("###########",response)
-    
-            //   if(response.role=="0")
-            //    this.props.history.push(CANDIDATE_HOME);
-            //    if(response.role=="2")
-            //     this.props.history.push(CALL_CANDIDATE_BY_ADMIN);
-            //   //  else if(response.role=="1")
-            //   //  this.props.history.push(RECRUITER_HOME);
-            //   //  else
-            //   //  this.props.history.push(ADMIN_HOME);
-            // })
           }
         });
       };
@@ -45,7 +28,16 @@ class RecruiterHome extends React.Component {
       render() {
         const { getFieldDecorator } = this.props.form;
         return (
-          <Form onSubmit={this.handleSubmit} className="login-form">
+          <div>
+          <div>
+          <Navbar text="Logout" to={SIGNOUT}/>
+          </div>
+          <div align="left">
+            <Link to="/recruiter/jobs"><span  className="links"><u>View Your Published Jobs!</u></span></Link>
+          </div> 
+          <div className="wrapperForm">
+          <Form  onSubmit={this.handleSubmit} className="login-form">
+            <h2><strong>Publish New Job</strong></h2>
             <Form.Item>
               {getFieldDecorator('title', {
                 rules: [{ required: true, message: 'Please mention title of Job!' }],
@@ -69,15 +61,13 @@ class RecruiterHome extends React.Component {
               )}
             </Form.Item>
             <Form.Item>
-              {/* {getFieldDecorator('remember', {
-                valuePropName: 'checked',
-                initialValue: true,
-              })(<Checkbox>Remember me</Checkbox>)} */}
               <Button type="primary" htmlType="submit" className="login-form-button">
                 Publish Job
               </Button>
             </Form.Item>
           </Form>
+          </div>
+          </div>
         );
       }
 }

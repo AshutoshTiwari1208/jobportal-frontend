@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
-import { List,
+import {
   Form,
-  Avatar,
-  Button,
-  Skeleton,
-Pagination} from 'antd';
+} from 'antd';
 
-import reqwest from 'reqwest';
+import Navbar from './../components/Navbar';
+import { Link } from 'react-router-dom'
 import {availablejobs} from "../redux/actions/jobs";
 import {connect} from "react-redux";
-import store from '../redux/store';//remove---
 import JobsView from '../components/JobsView'
+import {SIGNOUT,VIEW_APPLIED_JOBS} from "../constants/Routes";
 
 
 class CandidateHome extends React.Component {
@@ -32,19 +30,24 @@ class CandidateHome extends React.Component {
 
   render() {
 
-    const { availablejobs } = this.props; //took out function and passed
+    const { availablejobs } = this.props; 
     return (
-    <div>
-      {/* <Navbar/> */}
-      <JobsView  availablejobs={availablejobs}/>
-      {/* <Footer/> */}
-    </div>
+      <div>
+          <Navbar text="Logout" to={SIGNOUT}/>
+          <div align="left">
+             <Link to={VIEW_APPLIED_JOBS}><span  className="links"><u>View Applied Jobs</u></span></Link>
+          </div> 
+          <div className="listCards" >
+            <JobsView  availablejobs={availablejobs}/>
+          </div>
+      </div>
+
+  
     )
   }
 }
 
-
-const mapStateToProps=state=>{ //store se data available karayega
+const mapStateToProps=state=>{ 
   return{
     userData:state
   }
@@ -52,7 +55,5 @@ const mapStateToProps=state=>{ //store se data available karayega
 
 
 CandidateHome=connect(mapStateToProps,{availablejobs})(CandidateHome);
-//dusra argument function available karayega..
-
 export const CandidateJobs = Form.create({ name: 'candidateJobs' })(CandidateHome);
 

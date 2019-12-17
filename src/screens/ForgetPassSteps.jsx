@@ -6,6 +6,8 @@ import {forgetpassword} from '../redux/actions/auth';
 import { connect } from 'react-redux'
 import {ResetPass} from './ResetPassword';
 import {resetpassword} from '../redux/actions/auth';
+import Navbar from "../components/Navbar";
+import {SIGNUP} from "../constants/Routes";
 
 
 const { Step } = Steps;
@@ -45,15 +47,13 @@ class ForgetPassSteps extends React.Component {
         this.setState({
             loading : false
         })
-        
         console.log("XXXXX ERRROR IN FORGOT PASS-->",err.response);
       })
   }
 
   handleFinalResetRequest =(values)=>{
       this.props.resetpassword(values).then(response=>{
-          //???check in ant design
-          message.success('Password Changed Successfully')
+          message.success('XXXXX Password Changed Successfully')
           console.log("SUUCESSFULLY RESET RESPONSE ->",response);
       }).catch(err=>{
             openNotificationWithIcon('error',err.response.data.errors[0].message);
@@ -74,32 +74,32 @@ class ForgetPassSteps extends React.Component {
 
   render() {
     const { current, loading } = this.state;
-    console.log('loading', loading)
     return (
-      <div>
+        <div>
+         <Navbar text="Signup" to={SIGNUP}/>
+
+      <div className="wrapperForgetPass">
         <Steps current={current}>
           {this.steps.map(item => (
             <Step key={item.title} title={item.title} />
           ))}
         </Steps> 
-        <div className="steps-content">{loading ? <Spin /> : this.steps[current].content}</div>
-        <div className="steps-action">
-          {/* {current < this.steps.length - 1 && (
-            <Button type="primary" onClick={() => this.next()}>
-              Next
+
+        <div className="steps-content">{loading ? <span className="spin"><Spin /></span> : this.steps[current].content}</div>
+        <div className="steps-action" align="right">
+          {current < this.steps.length - 1 && (
+          <Button type="default" onClick={() => this.next()}>
+            Aready Have An OTP?
             </Button>
-          )} */}
-          {/* {current === this.steps.length - 1 && (
-            <Button type="primary" onClick={() => message.success('Password Changed Successfully')}>
-              Done
-            </Button>
-          )} */}
+          )}
+
           {current > 0 && (
             <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
-              Previous
+              Send OTP AGAIN
             </Button>
           )}
         </div>
+      </div>
       </div>
 
     );

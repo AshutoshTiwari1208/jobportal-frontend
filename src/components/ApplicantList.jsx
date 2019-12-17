@@ -59,11 +59,9 @@ onChange = page => {
             {
                 list.map(candidate=>{
                 return (
-                    <Card style={{ width: 300 }}>
-                    <p>{candidate.name}</p>
-                    <p>{candidate.username}</p>
-                    <p>{candidate.uuid}</p>
-                    </Card>
+                    <div className="cards">
+                    <Card title={candidate.username}>Name:{candidate.name}<br/>ID :{candidate.uuid}</Card>
+                   </div>
                 ) 
                 })
             }
