@@ -43,9 +43,7 @@ class SigninForm extends React.Component {
     return (
       <div>
       <Navbar text="Signup" to={SIGNUP}/>
-      <div align="left">
-             <Link to={ADMIN_SIGNIN}><span  className="links"><u>Admin Signin Window</u></span></Link>
-          </div> 
+      
           <h3 align="center"><span  className="h2WrapperSignup">SignIn to Existing Account</span></h3>
 
       <Form onSubmit={this.handleSubmit} className="login-form" className="wrapperForm">
@@ -87,6 +85,9 @@ class SigninForm extends React.Component {
          <br/>
           OR <b><Link to={SIGNUP}>register now!</Link></b>
         </Form.Item>
+        <div align="center">
+             <Link to={ADMIN_SIGNIN}><span  className="links"><u>Click for Admin Signin Window</u></span></Link>
+          </div> 
       </Form>
       </div>
     );

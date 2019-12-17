@@ -3,7 +3,7 @@ import {notification} from 'antd';
 
 const configureAxios = () => {
     return axios.create({
-        baseURL: process.env.REACT_APP_BASE_URL,
+        baseURL: "https://api.atjp.squareboat.info/api/v1",
         timeout: 30000
     })
 }
