@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Card,
 Button,
-Pagination
+Pagination,
+Spin
 } from 'antd';
 import { connect } from 'react-redux';
 import {allJobsByRecruiter} from "../redux/actions/jobs";
@@ -19,6 +20,7 @@ class PostedJobList extends Component {
         isApplied:false,
         page:1,
         limit:6,
+        loading:true
     }
 
 componentDidMount() {
@@ -30,7 +32,8 @@ componentDidMount() {
         this.setState({//check what coming inside list
             list:response.results,
             total:response.count,
-            list:response.results
+            list:response.results,
+            loading:false
         })
     })
 }
@@ -54,21 +57,28 @@ onChange = page => {
 
 
     render(){
-        const {list}=this.state //got list form inside current state
+        const {list,loading}=this.state //got list form inside current state
+        if(loading){
+            return(
+                <center><Spin /></center>
+            )
+        }
         if(list.length<1){
             return(
-                <h2><center>No Jobs Published!</center></h2>
+                <h3><center>No Jobs Published!</center></h3>
             )
         }
         return(
+
             <React.Fragment>
             {
-            list.map(jobs=>{
-                let linkto="/recruiter/jobs/"+jobs.uuid;
+           
+                list.map(jobs=>{
+                let linkto="/recruiter/jobs/"+jobs.id;
                 return(
 
                     <div className="cards">
-                    <Card title={jobs.job_title}><p>{jobs.job_description}<br/>ID:{jobs.uuid}</p>
+                    <Card title={jobs.job_title}><p>{jobs.job_description}<br/>ID:{jobs.id}</p>
                     <Link to={linkto}>View Applications</Link>
                     </Card>
               </div>
@@ -76,7 +86,7 @@ onChange = page => {
 
             })
             }
-            <Pagination onChange={this.onChange} total={this.state.total} pageSize={this.state.limit}/>   
+            <Pagination className="paginationblock" onChange={this.onChange} total={this.state.total} pageSize={this.state.limit}/>   
             </React.Fragment>
         )
     }  

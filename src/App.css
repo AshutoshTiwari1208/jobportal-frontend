@@ -129,3 +129,18 @@ h4, h2 {
   .login-form{
     width:70%;
   }
+
+
+  .paginationblock{
+    margin-bottom:10% !important;
+  }
+
+  h2{
+    text-decoration: underline;
+    margin-bottom:5% !important;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  h3{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }

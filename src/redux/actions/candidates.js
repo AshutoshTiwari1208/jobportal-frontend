@@ -4,7 +4,7 @@ import { ALL_CANDIDATES,DELETE_A_CANDIDATE,GET_CANDIDATE_BY_JOBID } from './../.
 export const allCandidates=(meta) => (dispatch,getState,{axios})=>{
     return new axios.get(ALL_CANDIDATES,{params:meta}).then(response=>{
         console.log("$$$$$$$$$$",response.data);
-        return response.data;
+        return response;
     })
 }
 
@@ -22,6 +22,6 @@ export const getAppliedCandidates=(jobId,meta)=>(dispatch,getState,{axios})=>{
     let JOB_ID=GET_CANDIDATE_BY_JOBID.replace(":jobId",jobId);
 
     return new axios.get(JOB_ID,{ params: meta}).then(response=>{
-        return response.data;
+        return response;
     })
 }

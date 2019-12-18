@@ -26,6 +26,7 @@ class AppliedJobs extends React.Component {
         <Link to={AVAILABLE_JOBS}><span  className="links"><u>View Available Jobs</u></span></Link>
     </div > 
     <div className="listCards">
+       <h2><center>Your Applied Jobs</center></h2>
       <AppliedJobsList allCandidates={allCandidates}/>
       </div>
     </div>

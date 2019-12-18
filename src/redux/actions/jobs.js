@@ -3,14 +3,15 @@ import { AVAILABLE_JOBS, APPLY_JOB,DELETE_A_JOB,ALL_JOBS,POST_JOB,POSTED_JOBS,AP
 export const availablejobs= (meta) => (dispatch,getState,{axios})=>{
     console.log(meta)
     return new axios.get(AVAILABLE_JOBS,{ params: meta} ).then(response=>{
-        return response.data;
+        return response;//changed .data
     })
 }
 
 export const applyForJob=(jobId)=>(dispatch,getState,{axios})=>{
     let APPLY=APPLY_JOB.replace(":jobId", jobId);
     return new axios.post(APPLY).then(response=>{
-        return response.data;
+        console.log("APPLY FOR ###",response);
+        return response;
     })
 }
 
@@ -21,9 +22,9 @@ export const deleteJob=(jobId)=>(dispatch,getState,{axios})=>{
     })
 }
 
-export const allJobs=()=>(dispatch,getState,{axios})=>{
-    return new axios.get(ALL_JOBS).then(response=>{
-        return response.data;
+export const allJobs=(meta)=>(dispatch,getState,{axios})=>{
+    return new axios.get(ALL_JOBS,{params:meta}).then(response=>{
+        return response;
     }) 
 }
 
@@ -42,6 +43,6 @@ export const allJobsByRecruiter=(meta)=>(dispatch,getState,{axios})=>{
 
 export const appliedjobslist=(meta)=>(dispatch,getStet,{axios})=>{
     return new axios.get(APPLIED_JOBS,{params:meta}).then(response=>{
-        return response.data;
+        return response;
     })
 }

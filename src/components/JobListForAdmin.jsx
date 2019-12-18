@@ -55,7 +55,7 @@ onChange = page => {
         const { list } = this.state
         if(list.length<1){
             return(
-                <h2><center>No Jobs to show at this moment....</center></h2>
+                <h3><center>No Jobs to show at this moment....</center></h3>
             )
         }
         return (
@@ -65,7 +65,7 @@ onChange = page => {
                 return (
                     <div className="cards">
                             <Card title={item.job_title}><p>{item.job_description}</p>
-                            <Button type="danger" onClick={(e) => this.applyToJob(e,item.uuid)} disabled={item.isApplied}>Apply</Button>
+                            <Button type="danger" onClick={(e) => this.applyToJob(e,item.id)} disabled={item.isApplied}>Apply</Button>
                             </Card>
                     </div>
                 ) 

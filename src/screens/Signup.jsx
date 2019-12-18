@@ -11,7 +11,7 @@ import {
   import Navbar from "../components/Navbar";
   import { signup } from "./../redux/actions/auth"
   import { connect } from 'react-redux'
-  import { CANDIDATE_HOME,RECRUITER_HOME,SIGNIN } from './../constants/Routes';
+  import { AVAILABLE_JOBS,RECRUITER_HOME,SIGNIN } from './../constants/Routes';
 
   const AutoCompleteOption = AutoComplete.Option;
   
@@ -30,7 +30,7 @@ import {
           // console.log('Received values of form: ', values);
           this.props.signup(values).then((data)=>{
               if(data.role=="0"){
-                  this.props.history.push(CANDIDATE_HOME);
+                  this.props.history.push(AVAILABLE_JOBS);
               }
               else if(data.role=="1"){
                 this.props.history.push(RECRUITER_HOME);
@@ -113,7 +113,7 @@ import {
         <Form {...formItemLayout} onSubmit={this.handleSubmit} className="wrapperFormSignup">
 
           <Form.Item label="E-Mail">
-            {getFieldDecorator('username', { //check
+            {getFieldDecorator('email', { //check
               rules: [
                 {
                   type: 'email',

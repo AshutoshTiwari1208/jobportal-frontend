@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Card,
 Button,
 Icon,
+Spin,
 Pagination} from 'antd';
 import { connect } from 'react-redux';
 import {getAppliedCandidates} from "../redux/actions/candidates";
@@ -13,6 +14,7 @@ class ApplicantList extends Component {
         list: [],
         page:1,
         limit:6,
+        loading:true
     }
 
 componentDidMount() {
@@ -23,9 +25,9 @@ componentDidMount() {
     this.props.getAppliedCandidates(this.props.jobId,pagination).then(response=>{
         
         this.setState({//set state will render the view again..
-        list: response.results,
         total:response.metadata.count,
-        list:response.results
+        list:response.data,
+        loading:false
         })
     })
 }
@@ -41,17 +43,22 @@ onChange = page => {
         console.log("$$$$$$$$$$$$",response);
         this.setState({//set state will render the view again..
             total:response.metadata.count,
-            list:response.results
+            list:response.data
         });
     })
   };
 
     
     render() {
-        const { list } = this.state
+        const { list,loading } = this.state
+        if(loading){
+            return(
+                <center><Spin /></center>
+            )
+        }
         if(list.length<1){
             return(
-                <h2><center>No Applications Received</center></h2>
+                <h3><center>No Applications Received</center></h3>
             )
         }
         return (
@@ -60,7 +67,7 @@ onChange = page => {
                 list.map(candidate=>{
                 return (
                     <div className="cards">
-                    <Card title={candidate.username}>Name:{candidate.name}<br/>ID :{candidate.uuid}</Card>
+                    <Card title={candidate.email}>Name:{candidate.name}<br/>ID :{candidate.id}</Card>
                    </div>
                 ) 
                 })

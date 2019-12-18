@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Card,
 Button,
 Pagination,
-Icon} from 'antd';
+Icon,
+Spin} from 'antd';
 import {applyForJob, availablejobs,deleteJob,allJobs} from "../redux/actions/jobs";
 import { connect } from 'react-redux';
 
@@ -14,27 +15,40 @@ class JobsView extends Component {
         isApplied:false,
         page:1,
         limit:6,
-        total: 0
+        total: 0,
+        loading: false
     }
 
 componentDidMount() {
+    console.log("MOUNT::::::",this.state);
+    this.setState({
+        loading : true
+    })
     if(this.props.userData.auth.userdetails.role=="0"){
        const pagination={
-            page: this.state.page,
+            page: this.state.page,//no prob i this.state
             limit:this.state.limit
         }
         this.props.availablejobs(pagination).then(response=>{
+            console.log("AVAILABLE JOBA:::::::",response);
             this.setState({//set state will render the view again..
+
                 total:response.metadata.count,
-                list:response.results
+                list:response.data,
+                loading: false
             });
         })
     }else{
+        const pagination={
+            page: this.state.page,//no prob i this.state
+            limit:this.state.limit
+        }
 
-        this.props.allJobs().then(response=>{
+        this.props.allJobs(pagination).then(response=>{
             this.setState({//set state will render the view again..
                 total:response.metadata.count,
-                list: response.results
+                list: response.data,
+                loading: false
             })
         });
     }
@@ -42,12 +56,12 @@ componentDidMount() {
 
 
     applyToJob=(e,jobUuid)=>{
-        
+        // console.log("APPLY TO JOB ",jobUuid);
         e.preventDefault();
 
         let jobDetails= this.props.applyForJob(jobUuid).then(data=>{
             const updatedJobs = this.state.list.map(job=>{
-                return job.uuid === jobUuid ? 
+                return job.id === jobUuid ? 
                 {
                   ...job, isApplied: true
                 } : 
@@ -64,7 +78,7 @@ componentDidMount() {
         e.preventDefault();
         let jobDetails=this.props.deleteJob(jobUuid).then(data=>{
             const updatedJobs=this.state.list.map(job=>{
-                return job.uuid===jobUuid ?
+                return job.id===jobUuid ?
                 {
                     ...job, isApplied:true
                 }:
@@ -85,14 +99,18 @@ componentDidMount() {
         this.props.availablejobs(pagination).then(response=>{
             this.setState({//set state will render the view again..
                 total:response.metadata.count,
-                list:response.results
+                list:response.data
             });
         })
       };
 
     
     render() {
-        const { list } = this.state
+        const { list, loading } = this.state;
+
+        if(loading) {
+            return  <center><Spin /></center> 
+        }
         if(list.length<1){
             return(
                 <h2><center>No Jobs Published So far...</center></h2>
@@ -108,7 +126,7 @@ componentDidMount() {
                         return (
                             <div className="cards">
                              <Card title={item.job_title}><p>{item.job_description}</p>
-                             <Button type="primary" onClick={(e) => this.applyToJob(e,item.uuid)} disabled={item.isApplied}>Apply</Button>
+                             <Button type="primary" onClick={(e) => this.applyToJob(e,item.id)} disabled={item.isApplied}>Apply</Button>
                              </Card>
                             </div>
                           ) 
@@ -118,13 +136,13 @@ componentDidMount() {
                         <div className="cards">
                             <Card title={item.job_title}>
                             <p>{item.job_description}</p>
-                             <Button type="danger" onClick={(e) => this.delJob(e,item.uuid)} disabled={item.isApplied}>Delete</Button>
+                             <Button type="danger" onClick={(e) => this.delJob(e,item.id)} disabled={item.isApplied}>Delete</Button>
                              </Card>
                       </div>
                     ) 
                 })
                 }
-            <Pagination onChange={this.onChange} total={this.state.total} pageSize={this.state.limit}/>
+            <Pagination className="paginationblock" onChange={this.onChange} total={this.state.total} pageSize={this.state.limit}/>
             </React.Fragment>  
         )}
 }

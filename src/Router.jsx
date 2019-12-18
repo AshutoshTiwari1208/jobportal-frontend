@@ -12,7 +12,7 @@ import JobHome from "./screens/JobsList"
 import {RecruiterPostJobs} from "./screens/RecruiterHome";
 import PostedJobs from "./screens/PostedJobs";
 import ApplicantsForJob from "./screens/ApplicantsToJob"
-import {ForgetPass} from "./screens/ForgetPassword";
+import {ForgetPass} from "./screens/ForgetPassword";                                                                                                                                                    
 import {ResetPass} from "./screens/ResetPassword";
 import {ForgetPassStep} from "./screens/ForgetPassSteps";
 import AppliedJobs from "./screens/AppliedJobs";

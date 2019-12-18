@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Card,
 Button,
-Pagination
+Pagination,
+Spin
 } from 'antd';
 import { connect } from 'react-redux';
 import {recruiterDelete,allRecruiters} from "../redux/actions/recruiters";
@@ -14,6 +15,7 @@ class RecruiterList extends Component {
         isApplied:false,
         page:1,
         limit:6,
+        loading:true
     }
 
 componentDidMount() {
@@ -23,9 +25,9 @@ componentDidMount() {
     }
     this.props.allRecruiters(pagination).then(response=>{
         this.setState({//check what coming inside list
-              list:response.results,
               total:response.metadata.count,
-              list:response.results
+              list:response.data,
+              loading:false
         })
     })
 }
@@ -37,10 +39,9 @@ onChange = page => {
         limit:this.state.limit
     }
     this.props.allRecruiters(pagination).then(response=>{
-        console.log("$$$$$$$$$$$$",response);
         this.setState({//set state will render the view again..
             total:response.metadata.count,
-            list:response.results
+            list:response.data
         });
     })
   };
@@ -50,7 +51,7 @@ deleteRecruiter=(e,recruiterUuid)=>{//uuid kahan se ayegi jispe click hoga
     e.preventDefault();
     let recruiterDetails=this.props.recruiterDelete(recruiterUuid).then(data=>{
         const updatedRecruiters = this.state.list.map(recruiter=>{
-            return recruiter.uuid===recruiterUuid ?
+            return recruiter.id===recruiterUuid ?
             {
                 ...recruiter,isApplied:true //only isApplied replace rest same.
             }:
@@ -64,7 +65,12 @@ deleteRecruiter=(e,recruiterUuid)=>{//uuid kahan se ayegi jispe click hoga
 
 
     render(){
-        const {list}=this.state //got list form inside current state
+        const {list,loading}=this.state //got list form inside current state
+        if(loading){
+            return(
+                <center><Spin /></center>
+            )
+        }
         if(list.length<1){
             return(
                 <h2><center>No Recruiters present...</center></h2>
@@ -77,8 +83,8 @@ deleteRecruiter=(e,recruiterUuid)=>{//uuid kahan se ayegi jispe click hoga
             list.map(recruiter=>{
                 return(
                     <div className="cards">
-                    <Card title={recruiter.username}><p>{recruiter.name}<br/>ID:{recruiter.uuid}</p>
-                    <Button type="danger" onClick={(e) => this.deleteRecruiter(e,recruiter.uuid)} disabled={recruiter.isApplied}>Delete</Button>
+                    <Card title={recruiter.email}><p>{recruiter.name}<br/>ID:{recruiter.id}</p>
+                    <Button type="danger" onClick={(e) => this.deleteRecruiter(e,recruiter.id)} disabled={recruiter.isApplied}>Delete</Button>
                     </Card>           
                  </div>
                 )

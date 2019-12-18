@@ -33,7 +33,6 @@ import { browserHistory } from 'react-router'
 export const signup=(signupData) => (dispatch, getState, {axios}) =>{
     return new axios.post(USER_SIGNUP, signupData).then(response=>{
             let userDetail=response.data;
-         
             dispatch({
                 type:"SIGNUP_USER",
                 payload:userDetail
@@ -50,7 +49,6 @@ export const signup=(signupData) => (dispatch, getState, {axios}) =>{
 export const signin=(signinData) =>(dispatch,getState,{axios})=>{
     return new axios.post(USER_SIGNIN,signinData).then(response=>{
         let userDetail=response.data;
-
         dispatch({
             type:"SIGNIN_USER",
             payload:userDetail
@@ -61,8 +59,8 @@ export const signin=(signinData) =>(dispatch,getState,{axios})=>{
 }
 
 export const forgetpassword=(emailPassed)=>(dispatch,getState,{axios})=>{
-    console.log("INSIDE ACTION:::::",emailPassed,emailPassed.username);
-    return new axios.post(FORGET_PASSWORD,{ username: emailPassed.username} ).then(response=>{
+    console.log("INSIDE ACTION:::::",emailPassed,emailPassed.email);
+    return new axios.post(FORGET_PASSWORD,{ email: emailPassed.email} ).then(response=>{
        console.log("WWWWWW RESPONSE:::",response);
         return response.data;
     })

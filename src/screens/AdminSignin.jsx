@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { connect } from 'react-redux'
 import {signin} from '../redux/actions/auth';
-import { CANDIDATE_HOME,CALL_CANDIDATE_BY_ADMIN } from '../constants/Routes';
+import { CALL_CANDIDATE_BY_ADMIN } from '../constants/Routes';
 import Navbar from "../components/Navbar";
 import { Link } from 'react-router-dom'
 
@@ -18,10 +18,7 @@ class AdminSignin extends React.Component {
            if(response.role=="2")
             this.props.history.push("/admin");
         
-              
-            //  this.props.history.push(RECRUITER_HOME);
-          //  else
-          //  this.props.history.push(ADMIN_HOME);
+            
         })
         
 
@@ -37,12 +34,12 @@ class AdminSignin extends React.Component {
       <Form onSubmit={this.handleSubmit} className="login-form" className="wrapperForm">
           <h2><span class="adminh2">ADMIN</span> SIGNIN WINDOW</h2>
         <Form.Item>
-          {getFieldDecorator('username', {
-            rules: [{ required: true, message: 'Please input your username!' }],
+          {getFieldDecorator('email', {
+            rules: [{ required: true, message: 'Please input your email!' }],
           })(
             <Input
               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              placeholder="Username"
+              placeholder="E-mail"
             />,
           )}
         </Form.Item>

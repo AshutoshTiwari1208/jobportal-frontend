@@ -23,7 +23,7 @@ class ForgetPassword extends React.Component {
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
         <Form.Item>
-          {getFieldDecorator('username', {
+          {getFieldDecorator('email', {
             rules: [{ required: true, message: 'E-Mail is needed to Reset password!' }],
           })(
             <Input

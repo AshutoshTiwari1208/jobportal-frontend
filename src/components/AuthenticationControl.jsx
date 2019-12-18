@@ -6,7 +6,7 @@ Pagination,
 notification} from 'antd';
 import { connect } from 'react-redux';
 import {appliedjobslist} from "../redux/actions/jobs";
-
+import {HOME} from "../constants/Routes";
 export function AuthenticationControl (Component){
 
 const openNotificationWithIcon = (type,message,desc) => {
@@ -39,7 +39,7 @@ const openNotificationWithIcon = (type,message,desc) => {
                     this.state.isAuthenticated=false;
                 }
                 else if(this.props.location.pathname.startsWith("/candidate")&& role!="0"){
-                    history.push("/signin");
+                    history.push(HOME);
                     openNotificationWithIcon('error',"Not authorized to Access this route");
 
                     this.state.isAuthenticated=false;

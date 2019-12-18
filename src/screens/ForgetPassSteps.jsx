@@ -54,7 +54,9 @@ class ForgetPassSteps extends React.Component {
   handleFinalResetRequest =(values)=>{
       this.props.resetpassword(values).then(response=>{
           message.success('XXXXX Password Changed Successfully')
+          this.props.history.push('/signin');
           console.log("SUUCESSFULLY RESET RESPONSE ->",response);
+        //   this.history.push("/signin");
       }).catch(err=>{
             openNotificationWithIcon('error',err.response.data.errors[0].message);
           

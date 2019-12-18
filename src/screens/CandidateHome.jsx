@@ -19,7 +19,6 @@ class CandidateHome extends React.Component {
     current:1
   };
 
-
   onChange = page => {
     console.log(page);
     this.setState({
@@ -29,7 +28,6 @@ class CandidateHome extends React.Component {
   };
 
   render() {
-
     const { availablejobs } = this.props; 
     return (
       <div>
@@ -50,7 +48,6 @@ const mapStateToProps=state=>{
     userData:state
   }
 }
-
 
 CandidateHome=connect(mapStateToProps,{availablejobs})(CandidateHome);
 export const CandidateJobs = Form.create({ name: 'candidateJobs' })(CandidateHome);

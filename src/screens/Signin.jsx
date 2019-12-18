@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Form, Icon, Input, Button,notification } from 'antd';
 import { connect } from 'react-redux'
 import {signin} from '../redux/actions/auth';
-import { CANDIDATE_HOME,CALL_CANDIDATE_BY_ADMIN } from '../constants/Routes';
+import { AVAILABLE_JOBS,CALL_CANDIDATE_BY_ADMIN } from '../constants/Routes';
 import Navbar from "../components/Navbar";
 import { Link } from 'react-router-dom'
 import {SIGNUP,ADMIN_SIGNIN,SIGNIN,RESET_PASSWORD} from "../constants/Routes";
@@ -26,7 +26,7 @@ class SigninForm extends React.Component {
           console.log("###########",response)
 
           if(response.role=="0")
-           this.props.history.push(CANDIDATE_HOME);
+           this.props.history.push(AVAILABLE_JOBS);
            if(response.role=="2"){
             this.props.history.push(SIGNIN);
               openNotificationWithIcon('error',"ADMIN CAN'T GOT THROUGH THIS ROUTE");
@@ -49,8 +49,8 @@ class SigninForm extends React.Component {
       <Form onSubmit={this.handleSubmit} className="login-form" className="wrapperForm">
 
         <Form.Item>
-          {getFieldDecorator('username', {
-            rules: [{ required: true, message: 'Please input your username!' },
+          {getFieldDecorator('email', {
+            rules: [{ required: true, message: 'Please input your email!' },
             {
               type: 'email',
               message: 'The input is not valid E-mail!',
@@ -58,7 +58,7 @@ class SigninForm extends React.Component {
           })(
             <Input
               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              placeholder="Username"
+              placeholder="E-mail"
             />,
           )}
         </Form.Item>
