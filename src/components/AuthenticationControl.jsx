@@ -43,7 +43,7 @@ const openNotificationWithIcon = (type,message,desc) => {
                     openNotificationWithIcon('error',"Not authorized to Access this route");
 
                     this.state.isAuthenticated=false;
-                }s
+                }
                 else if(this.props.location.pathname.startsWith("/recruiter")&& role!="1"){
                     history.push("/signin");
                     openNotificationWithIcon('error',"Not authorized to Access this route");
