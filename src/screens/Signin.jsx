@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Form, Icon, Input, Button,notification } from 'antd';
 import { connect } from 'react-redux'
 import {signin} from '../redux/actions/auth';
-import { AVAILABLE_JOBS,CALL_CANDIDATE_BY_ADMIN } from '../constants/Routes';
+import { AVAILABLE_JOBS,CALL_CANDIDATE_BY_ADMIN,RECRUITER } from '../constants/Routes';
 import Navbar from "../components/Navbar";
 import { Link } from 'react-router-dom'
 import {SIGNUP,ADMIN_SIGNIN,SIGNIN,RESET_PASSWORD} from "../constants/Routes";
@@ -23,7 +23,6 @@ class SigninForm extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         this.props.signin(values).then(response=>{
-          console.log("###########",response)
 
           if(response.role=="0")
            this.props.history.push(AVAILABLE_JOBS);
@@ -32,7 +31,7 @@ class SigninForm extends React.Component {
               openNotificationWithIcon('error',"ADMIN CAN'T GOT THROUGH THIS ROUTE");
            }
             if(response.role=="1")
-            this.props.history.push("/recruiter");      
+            this.props.history.push(RECRUITER);      
         })
       }
     });
@@ -42,9 +41,9 @@ class SigninForm extends React.Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div>
-      <Navbar text="Signup" to={SIGNUP}/>
+      <Navbar text="Sign up" to={SIGNUP}/>
       
-          <h3 align="center"><span  className="h2WrapperSignup">SignIn to Existing Account</span></h3>
+          <h3 align="center"><span  className="h2WrapperSignup">Sign in to Existing Account</span></h3>
 
       <Form onSubmit={this.handleSubmit} className="login-form" className="wrapperForm">
 
@@ -86,7 +85,7 @@ class SigninForm extends React.Component {
           OR <b><Link to={SIGNUP}>register now!</Link></b>
         </Form.Item>
         <div align="center">
-             <Link to={ADMIN_SIGNIN}><span  className="links"><u>Click for Admin Signin Window</u></span></Link>
+             <Link to={ADMIN_SIGNIN}><span  className="links"><u>Click for Admin Sign in Window</u></span></Link>
           </div> 
       </Form>
       </div>

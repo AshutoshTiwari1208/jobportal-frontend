@@ -8,7 +8,6 @@ class ResetPassword extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) { 
-        console.log("VALUE =GONE TO RESETPASS STEPS VALUE-->",values);
         this.props.resetpassword(values);    
 
       }
@@ -57,6 +56,7 @@ class ResetPassword extends React.Component {
               ],
             })(<Input.Password />)}
           </Form.Item>
+          
         <Form.Item  label={
               <span>
                 OTP&nbsp;

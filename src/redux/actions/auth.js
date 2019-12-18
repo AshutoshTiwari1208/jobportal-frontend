@@ -59,9 +59,7 @@ export const signin=(signinData) =>(dispatch,getState,{axios})=>{
 }
 
 export const forgetpassword=(emailPassed)=>(dispatch,getState,{axios})=>{
-    console.log("INSIDE ACTION:::::",emailPassed,emailPassed.email);
     return new axios.post(FORGET_PASSWORD,{ email: emailPassed.email} ).then(response=>{
-       console.log("WWWWWW RESPONSE:::",response);
         return response.data;
     })
 }

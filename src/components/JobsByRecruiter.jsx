@@ -30,25 +30,22 @@ componentDidMount() {
     }
     this.props.allJobsByRecruiter(pagination).then(response=>{
         this.setState({//check what coming inside list
-            list:response.results,
-            total:response.count,
-            list:response.results,
+            total:response.metadata.count,
+            list:response.data,
             loading:false
         })
     })
 }
 
 onChange = page => {
-    console.log("PAGE CLICKED ::::",page);
     const pagination={
         page: page,
         limit:this.state.limit
     }
     this.props.allJobsByRecruiter(pagination).then(response=>{
-        console.log("$$$$$$$$$$$$",response);
         this.setState({//set state will render the view again..
             total:response.metadata.count,
-            list:response.results
+            list:response.data
         });
     })
   };
@@ -78,12 +75,11 @@ onChange = page => {
                 return(
 
                     <div className="cards">
-                    <Card title={jobs.job_title}><p>{jobs.job_description}<br/>ID:{jobs.id}</p>
+                    <Card title={jobs.job_title}><p>{jobs.job_description}</p>
                     <Link to={linkto}>View Applications</Link>
                     </Card>
               </div>
                 )
-
             })
             }
             <Pagination className="paginationblock" onChange={this.onChange} total={this.state.total} pageSize={this.state.limit}/>   

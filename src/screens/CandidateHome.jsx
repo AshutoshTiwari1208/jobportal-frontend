@@ -20,7 +20,6 @@ class CandidateHome extends React.Component {
   };
 
   onChange = page => {
-    console.log(page);
     this.setState({
       current: page,
 

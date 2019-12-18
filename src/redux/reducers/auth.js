@@ -1,7 +1,6 @@
 export default function(state={
     userdetails:{}   
 }, action){
-    console.log(action)
     switch(action.type){
 
         case "SIGNIN_USER" : return {

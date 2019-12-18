@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { BrowserRouter as AppRouter, Route } from 'react-router-dom';
-import Home from './screens/Home';
 import App from './App';
 import { Signup } from './screens/Signup';
 import { Signin } from './screens/Signin';
@@ -12,7 +11,7 @@ import JobHome from "./screens/JobsList"
 import {RecruiterPostJobs} from "./screens/RecruiterHome";
 import PostedJobs from "./screens/PostedJobs";
 import ApplicantsForJob from "./screens/ApplicantsToJob"
-import {ForgetPass} from "./screens/ForgetPassword";                                                                                                                                                    
+import {ForgetPass} from "./screens/ForgetPassword";
 import {ResetPass} from "./screens/ResetPassword";
 import {ForgetPassStep} from "./screens/ForgetPassSteps";
 import AppliedJobs from "./screens/AppliedJobs";
@@ -22,7 +21,6 @@ export const Router = () => (
     <AppRouter>
         <Route exact path="/"           component={Signin} />
         <Route path="/signup"           component={Signup} />
-        <Route path="/signin"           component={Signin} />
         <Route path="/dashboard"        component={App} />
         <Route exact  path ="/candidate/jobs" component={AuthenticationControl(CandidateJobs)}/>
         <Route path ="/admin/candidates/"   component={AuthenticationControl(CandidateList)} />
@@ -34,6 +32,7 @@ export const Router = () => (
         <Route  path="/recruiter/jobs/:jobId" component={AuthenticationControl(ApplicantsForJob)} />
         <Route path="/forgetpassword" component={ForgetPass} />
         <Route path="/resetpassword" component={ResetPass} />
+        <Route exact  path="/signin" component={Signin} />
         <Route path="/resetpasswordsteps" component={ForgetPassStep} />
         <Route path="/candidate/jobs/applications" component={AuthenticationControl(AppliedJobs)} />
         <Route path="/adminsignin" component={SigninAdmin}/>

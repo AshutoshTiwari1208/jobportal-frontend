@@ -25,7 +25,6 @@ import {
     handleSubmit = e => {
       e.preventDefault();
       this.props.form.validateFieldsAndScroll((err, values) => {
-        console.log(values);
         if (!err) {
           // console.log('Received values of form: ', values);
           this.props.signup(values).then((data)=>{
@@ -107,8 +106,8 @@ import {
       return (
         <div >
           
-        <Navbar text="Signin" to="/signin"/>
-        <h3 align="center"><span  className="h2WrapperSignup">SignUp for a New Account</span></h3>
+        <Navbar text="Sign in" to="/signin"/>
+        <h3 align="center"><span  className="h2WrapperSignup">Sign up for a New Account</span></h3>
 
         <Form {...formItemLayout} onSubmit={this.handleSubmit} className="wrapperFormSignup">
 
@@ -125,8 +124,42 @@ import {
                 },
               ],
             })(<Input />)}
-          </Form.Item>
-          <Form.Item  label={
+          </Form.Item>     
+              {/* kdsfkjdsf *********************************************************************************************************/}
+
+          <Form.Item label="Password" hasFeedback>
+          {getFieldDecorator('password', {
+            rules: [
+              {
+                required: true,
+                message: 'Please input your password!',
+              },
+              {
+                validator: this.validateToNextPassword,
+              },
+              {
+                min:6,
+                message:"Password should be minimum of 6 character"
+            }
+            ],
+          })(<Input.Password />)}
+        </Form.Item>
+        <Form.Item label="Confirm Password" hasFeedback>
+          {getFieldDecorator('confirm', {
+            rules: [
+              {
+                required: true,
+                message: 'Please confirm your password!',
+              },
+              {
+                validator: this.compareToFirstPassword,
+              },
+            ],
+          })(<Input.Password onBlur={this.handleConfirmBlur} />)}
+        </Form.Item>
+
+
+          {/* <Form.Item  label={
               <span>
                 Password&nbsp;
                 <Tooltip title="Password must be minimum 6 character long ">
@@ -149,8 +182,10 @@ import {
                 },
               ],
             })(<Input.Password />)}
-          </Form.Item>
+          </Form.Item> */}
       
+
+
           <Form.Item
             label={
               <span>
@@ -179,7 +214,7 @@ import {
 
           <Form.Item {...tailFormItemLayout}>
             <Button type="primary" htmlType="submit">
-              Signup 
+              Sign up 
             </Button>
           </Form.Item>
         </Form>

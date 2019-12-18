@@ -20,7 +20,6 @@ componentDidMount() {
         limit:this.state.limit
     }
 
-    console.log("#########",this.props.id);
     this.props.availablejobs(this.props.id,pagination).then(response=>{
         this.setState({//set state will render the view again..
         list: response.results,
@@ -36,13 +35,11 @@ componentDidMount() {
 
 
 onChange = page => {
-    console.log("PAGE CLICKED ::::",page);
     const pagination={
         page: page,
         limit:this.state.limit
     }
     this.props.availablejobs(this.props.id,pagination).then(response=>{
-        console.log("$$$$$$$$$$$$",response);
         this.setState({//set state will render the view again..
             total:response.metadata.count,
             list:response.results

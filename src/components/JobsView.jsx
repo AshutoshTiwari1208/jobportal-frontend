@@ -3,6 +3,7 @@ import { Card,
 Button,
 Pagination,
 Icon,
+Popconfirm,
 Spin} from 'antd';
 import {applyForJob, availablejobs,deleteJob,allJobs} from "../redux/actions/jobs";
 import { connect } from 'react-redux';
@@ -16,11 +17,11 @@ class JobsView extends Component {
         page:1,
         limit:6,
         total: 0,
-        loading: false
+        loading: false,
+        textPop:"Want to apply to this job?"
     }
 
 componentDidMount() {
-    console.log("MOUNT::::::",this.state);
     this.setState({
         loading : true
     })
@@ -30,7 +31,6 @@ componentDidMount() {
             limit:this.state.limit
         }
         this.props.availablejobs(pagination).then(response=>{
-            console.log("AVAILABLE JOBA:::::::",response);
             this.setState({//set state will render the view again..
 
                 total:response.metadata.count,
@@ -74,20 +74,20 @@ componentDidMount() {
 
     }
 
-    delJob=(e,jobUuid)=>{
+    delJob=(e,jobUuid,isDisabled)=>{
         e.preventDefault();
-        let jobDetails=this.props.deleteJob(jobUuid).then(data=>{
-            const updatedJobs=this.state.list.map(job=>{
-                return job.id===jobUuid ?
-                {
-                    ...job, isApplied:true
-                }:
-                job
-            })
-            this.setState({
-                list:updatedJobs
-            })
-        })
+                let jobDetails=this.props.deleteJob(jobUuid).then(data=>{
+                    const updatedJobs=this.state.list.map(job=>{
+                        return job.id===jobUuid ?
+                        {
+                            ...job, isApplied:true
+                        }:
+                        job
+                    })
+                    this.setState({
+                        list:updatedJobs
+                    })
+                })
     }
 
     //PAGINATE HERE.....
@@ -106,6 +106,8 @@ componentDidMount() {
 
     
     render() {
+
+
         const { list, loading } = this.state;
 
         if(loading) {
@@ -123,10 +125,13 @@ componentDidMount() {
                 {
                 this.props.userData.auth.userdetails.role=="0" ? (
                     list.map(item=>{
-                        return (
+                        return ( ///FFINEE-----------------------------------------
                             <div className="cards">
                              <Card title={item.job_title}><p>{item.job_description}</p>
-                             <Button type="primary" onClick={(e) => this.applyToJob(e,item.id)} disabled={item.isApplied}>Apply</Button>
+                             <Popconfirm placement="right" title={this.state.textPop} disabled={item.isApplied} onConfirm={(e) => this.applyToJob(e,item.id)}  okText="Yes" cancelText="No">
+                             <Button type="primary"  disabled={item.isApplied}>Apply</Button>
+                             </Popconfirm>
+
                              </Card>
                             </div>
                           ) 
@@ -136,7 +141,7 @@ componentDidMount() {
                         <div className="cards">
                             <Card title={item.job_title}>
                             <p>{item.job_description}</p>
-                             <Button type="danger" onClick={(e) => this.delJob(e,item.id)} disabled={item.isApplied}>Delete</Button>
+                             <Button type="danger" onClick={(e) => this.delJob(e,item.id,item.isApplied)} disabled={item.isApplied}>Delete</Button>
                              </Card>
                       </div>
                     ) 

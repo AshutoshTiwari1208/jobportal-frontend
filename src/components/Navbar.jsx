@@ -13,7 +13,8 @@ class Navbar extends React.Component {
    
   state = {
     current: 'mail',
-    redirect:false
+    redirect:false,
+    path:"/signin"
   };
 
 
@@ -38,14 +39,18 @@ class Navbar extends React.Component {
     
     const { text , to, history } = this.props;
 
-  
-    // if(to=="signout"){
-    //     console.log(to)
-    //     signout();
-    //     history.push("/signin");
-    //     console.log("@#$@#@#2");
-    // }
-
+    
+      if(this.props.userData.auth.userdetails.role=="0")
+      {
+          this.state.path="/candidate/jobs";
+      }else if(this.props.userData.auth.userdetails.role=="1")
+      {
+        this.state.path="/recruiter";
+      }else if(this.props.userData.auth.userdetails.role=="2")
+      {
+        this.state.path="/admin";
+      }
+    
 
 
     return (
@@ -62,7 +67,7 @@ class Navbar extends React.Component {
        >
 
             <Title level={2}key="mail">
-            Job portal
+            <Link to={this.state.path}>Job portal</Link> 
             </Title>
             <Title level={4} key="mail">
             <Link onClick={(e) => this.handleClick(e,to)} to={to}>{text}</Link>
@@ -73,4 +78,13 @@ class Navbar extends React.Component {
 
 }
 
-export default connect(null, { signout })(Navbar);
+const mapStateToProps=(store)=>{
+  return({
+      userData:store
+  })
+}  
+
+
+
+
+export default connect(mapStateToProps, { signout })(Navbar);

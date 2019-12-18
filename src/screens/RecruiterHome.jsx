@@ -26,8 +26,6 @@ class RecruiterHome extends React.Component {
                 this.setState({
                   redirect:true
                 })
-                  // alert("Job is posted Successfully");
-                  console.log("$$$JOB POSTED$$$ :: ",response);
               });
           }
         });

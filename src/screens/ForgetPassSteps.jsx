@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import {ResetPass} from './ResetPassword';
 import {resetpassword} from '../redux/actions/auth';
 import Navbar from "../components/Navbar";
-import {SIGNUP} from "../constants/Routes";
+import {SIGNUP,HOME} from "../constants/Routes";
 
 
 const { Step } = Steps;
@@ -47,16 +47,13 @@ class ForgetPassSteps extends React.Component {
         this.setState({
             loading : false
         })
-        console.log("XXXXX ERRROR IN FORGOT PASS-->",err.response);
       })
   }
 
   handleFinalResetRequest =(values)=>{
       this.props.resetpassword(values).then(response=>{
-          message.success('XXXXX Password Changed Successfully')
-          this.props.history.push('/signin');
-          console.log("SUUCESSFULLY RESET RESPONSE ->",response);
-        //   this.history.push("/signin");
+          message.success('Password Changed Successfully')
+          this.props.history.push(HOME);
       }).catch(err=>{
             openNotificationWithIcon('error',err.response.data.errors[0].message);
           

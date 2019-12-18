@@ -14,7 +14,6 @@ class AdminSignin extends React.Component {
       if (!err) {
         this.props.signin(values).then(response=>{
          
-          console.log("#######ADMIN LOGIN####",response)
            if(response.role=="2")
             this.props.history.push("/admin");
         

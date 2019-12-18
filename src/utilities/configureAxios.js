@@ -30,23 +30,22 @@ axiosInstance.interceptors.request.use(async config => {
 axiosInstance.interceptors.response.use(response => {
     return response.data
 }, err=>{
-alert(err.response.data.errors);
-    // const saveError=err.response.data.errors;
+    const saveError=err.response.data.errors;
 
-    // console.log("ERROR HANDLED:",err.response);
-    // if(err.response.status==422){
-    //     openNotificationWithIcon('error',"ERROR OCCURED",saveError);
+    console.log("ERROR HANDLED:",err.response);
+    if(err.response.status==422){
+        openNotificationWithIcon('error',"ERROR OCCURED",saveError);
 
 
-    // }
-    // else if(err.response.data.code==401){
+    }
+    else if(err.response.data.code==401){
 
-    //     openNotificationWithIcon('error',"ERROR OCCURED",saveError);
-    // }
-    // else{
-    //     openNotificationWithIcon('error',"ERROR OCCURED",saveError);
+        openNotificationWithIcon('error',"ERROR OCCURED",saveError);
+    }
+    else{
+        openNotificationWithIcon('error',"ERROR OCCURED",saveError);
 
-    // }
+    }
    
        return Promise.reject(err) //what doing????
 
