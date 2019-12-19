@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { Card,
 Button,
-Icon,
 Pagination,
-Spin} from 'antd';
+Spin,
+} from 'antd';
 import { connect } from 'react-redux';
 import {candidateDelete} from '../redux/actions/candidates';
 import {allCandidates} from "../redux/actions/candidates";
+import {Link} from "react-router-dom";
 
 
 class CandidatesList extends Component {
@@ -34,6 +35,7 @@ componentDidMount() {
         })
     })
 }
+
 
 
 deleteCandidate=(e,candidateUuid)=>{
@@ -94,6 +96,7 @@ onChange = page => {
                     <div className="cards">
                     <Card title={candidate.email}><p>Name:{candidate.name}<br/>ID:{candidate.id}</p>
                      <Button type="danger" onClick={(e) =>  this.deleteCandidate(e,candidate.id)} disabled={candidate.isApplied}>Delete</Button>
+                     <Link type="primary" to="/candidate/jobs/applications"  disabled={candidate.isApplied}>Show Applied Jobs</Link>
                      </Card>
               </div>
                 ) 

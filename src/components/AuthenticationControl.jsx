@@ -30,10 +30,13 @@ const openNotificationWithIcon = (type,message,desc) => {
         handleAuth = () => {
                 const {history}=this.props;
                 const {role}=this.props.userData.auth.userdetails;
+                // if((this.props.location.pathname.startsWith("/candidate/jobs/applications"))&&(role=="1")){
+                //         history.push("/signin");
+                //         openNotificationWithIcon('error',"Not authorized to Access this route");
+                //         this.state.isAuthenticated=false;
+                // }
                 if(this.props.location.pathname.startsWith("/admin")&&(role != "2")){
-                    console.log("ROle",this.props.location.pathname.startsWith("/admin"));
                     history.push("/adminsignin");
-                    console.log(this.props.location)
                     openNotificationWithIcon('error',"Not authorized to Access this route");
 
                     this.state.isAuthenticated=false;
@@ -52,7 +55,6 @@ const openNotificationWithIcon = (type,message,desc) => {
 
                 }
             }
-            // role= 0, /admin <Login> : path
 
 
 
