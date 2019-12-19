@@ -57,14 +57,12 @@ deleteCandidate=(e,candidateUuid)=>{
      
  
 onChange = page => {
-    console.log("PAGE CLICKED ::::",page);
-    const pagination={
+   const pagination={
         page: page,
         limit:this.state.limit
     }
     this.props.allCandidates(pagination).then(response=>{
-        console.log("$$$$$$$$$$$$",response);
-        this.setState({//set state will render the view again..
+       this.setState({//set state will render the view again..
             total:response.metadata.count,
             list:response.data
         });
@@ -109,4 +107,3 @@ onChange = page => {
 
 
 export default connect(null, {candidateDelete, allCandidates}) (CandidatesList);//take then send
-
