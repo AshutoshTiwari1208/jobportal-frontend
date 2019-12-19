@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as AppRouter, Route } from 'react-router-dom';
+import { BrowserRouter as AppRouter, Route,Switch } from 'react-router-dom';
 import App from './App';
 import { Signup } from './screens/Signup';
 import { Signin } from './screens/Signin';
@@ -7,18 +7,20 @@ import {CandidateJobs}  from './screens/CandidateHome'
 import AdminHome from './screens/AdminHome'
 import CandidateList from './screens/CandidateList'
 import RecruiterList from "./screens/RecruiterList"
-import JobHome from "./screens/JobsList"
+import JobHome from "./screens/JobsList";
 import {RecruiterPostJobs} from "./screens/RecruiterHome";
 import PostedJobs from "./screens/PostedJobs";
-import ApplicantsForJob from "./screens/ApplicantsToJob"
+import ApplicantsForJob from "./screens/ApplicantsToJob";
 import {ForgetPass} from "./screens/ForgetPassword";
 import {ResetPass} from "./screens/ResetPassword";
 import {ForgetPassStep} from "./screens/ForgetPassSteps";
 import AppliedJobs from "./screens/AppliedJobs";
 import {AuthenticationControl} from "./components/AuthenticationControl";
 import {SigninAdmin} from "./screens/AdminSignin";
+import {NoMatch} from "./components/NoMatch";
 export const Router = () => (
     <AppRouter>
+        <Switch>
         <Route exact path="/"           component={Signin} />
         <Route path="/signup"           component={Signup} />
         <Route path="/dashboard"        component={App} />
@@ -36,6 +38,9 @@ export const Router = () => (
         <Route path="/resetpasswordsteps" component={ForgetPassStep} />
         <Route path="/candidate/jobs/applications" component={AuthenticationControl(AppliedJobs)} />
         <Route path="/adminsignin" component={SigninAdmin}/>
-
+        <Route path="*">
+            <NoMatch/>
+        </Route>
+        </Switch>
     </AppRouter>
 )

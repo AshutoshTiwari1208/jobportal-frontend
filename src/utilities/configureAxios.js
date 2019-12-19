@@ -3,7 +3,7 @@ import {notification} from 'antd';
 
 const configureAxios = () => {
     return axios.create({
-        baseURL: process.env.REACT_APP_BASE_URL,
+        baseURL: "http://localhost:4000/api/v1",
         timeout: 30000
     })
 }
@@ -43,7 +43,12 @@ axiosInstance.interceptors.response.use(response => {
         openNotificationWithIcon('error',"ERROR OCCURED",saveError);
     }
     else{
-        openNotificationWithIcon('error',"ERROR OCCURED",saveError);
+        if(isNaN(saveError[0])){
+            openNotificationWithIcon('error',"ERROR OCCURED",saveError);
+        }else{
+            console.log(saveError)
+            openNotificationWithIcon('error',"ERROR OCCURED",saveError[0].message);
+        }
 
     }
    

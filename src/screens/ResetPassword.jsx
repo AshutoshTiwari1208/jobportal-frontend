@@ -7,15 +7,46 @@ class ResetPassword extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
+      
       if (!err) { 
+        delete values.confirm;
         this.props.resetpassword(values);    
 
       }
     });
   };
+  state={
+    email:''
+  }
+
+
+  handleConfirmBlur = e => {
+    const { value } = e.target;
+    this.setState({ confirmDirty: this.state.confirmDirty || !!value });
+  };
+
+  compareToFirstPassword = (rule, value, callback) => {
+    const { form } = this.props;
+    if (value && value !== form.getFieldValue('password')) {
+      callback('Two passwords that you enter is inconsistent!');
+    } else {
+      callback();
+    }
+  };
+
+  validateToNextPassword = (rule, value, callback) => {
+    const { form } = this.props;
+    if (value && this.state.confirmDirty) {
+      form.validateFields(['confirm'], { force: true });
+    }
+    callback();
+  };
+
 
   render() {
+   
     const { getFieldDecorator } = this.props.form;
+    const { email } = this.props;
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
         <Form.Item label={
@@ -25,6 +56,7 @@ class ResetPassword extends React.Component {
             } hasFeedback>
           {getFieldDecorator('email', {
             rules: [{ required: true, message: 'Please input your email!' }],
+            initialValue :email
           })(
             <Input
               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -32,30 +64,37 @@ class ResetPassword extends React.Component {
             />,
           )}
         </Form.Item>
-        <Form.Item  label={
-              <span>
-                New Password&nbsp;
-                <Tooltip title="Password must be minimum 6 character long ">
-                  <Icon type="question-circle-o" />
-                </Tooltip>
-              </span>
-            } hasFeedback>
-            {getFieldDecorator('password', {
-              rules: [
-                {
-                  required: true,
-                  message: 'Please input your password!',
-                },
-                {
-                    min:6,
-                    message:"Password should be minimum of 6 character"
-                },
-                {
-                  validator: this.validateToNextPassword,
-                },
-              ],
-            })(<Input.Password />)}
-          </Form.Item>
+        <Form.Item label="Password" hasFeedback>
+          {getFieldDecorator('password', {
+            rules: [
+              {
+                required: true,
+                message: 'Please input your password!',
+              },
+              {
+                validator: this.validateToNextPassword,
+              },
+              {
+                min:6,
+                message:"Password should be minimum of 6 character"
+            }
+            ],
+          })(<Input.Password />)}
+        </Form.Item>
+
+          <Form.Item label="Confirm Password" hasFeedback>
+            {getFieldDecorator('confirm', {
+            rules: [
+              {
+                required: true,
+                message: 'Please confirm your password!',
+              },
+              {
+                validator: this.compareToFirstPassword,
+              },
+            ],
+          })(<Input.Password onBlur={this.handleConfirmBlur} />)}
+        </Form.Item>
           
         <Form.Item  label={
               <span>

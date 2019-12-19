@@ -127,11 +127,10 @@ componentDidMount() {
                     list.map(item=>{
                         return ( ///FFINEE-----------------------------------------
                             <div className="cards">
-                             <Card title={item.job_title}><p>{item.job_description}</p>
+                             <Card title={item.job_title}><p><h5>Description<h6>{item.job_description}</h6></h5><hr/> <b>{item.companyname}</b></p>
                              <Popconfirm placement="right" title={this.state.textPop} disabled={item.isApplied} onConfirm={(e) => this.applyToJob(e,item.id)}  okText="Yes" cancelText="No">
                              <Button type="primary"  disabled={item.isApplied}>Apply</Button>
                              </Popconfirm>
-
                              </Card>
                             </div>
                           ) 
@@ -139,9 +138,12 @@ componentDidMount() {
                 list.map(item=>{
                     return (
                         <div className="cards">
-                            <Card title={item.job_title}>
-                            <p>{item.job_description}</p>
-                             <Button type="danger" onClick={(e) => this.delJob(e,item.id,item.isApplied)} disabled={item.isApplied}>Delete</Button>
+                            <Card title={item.job_title}><p><h5>Description<h6>{item.job_description}</h6></h5><hr/> <b>{item.companyname}</b></p>
+                             {/* <Button type="danger" onClick={(e) => this.delJob(e,item.id,item.isApplied)} disabled={item.isApplied}>Delete</Button> */}
+                            
+                             <Popconfirm placement="right" title={this.state.textPop} disabled={item.isApplied} onConfirm={(e) => this.delJob(e,item.id,item.isApplied)}   okText="Yes" cancelText="No">
+                             <Button type="danger"  disabled={item.isApplied}>Delete</Button>
+                             </Popconfirm>
                              </Card>
                       </div>
                     ) 

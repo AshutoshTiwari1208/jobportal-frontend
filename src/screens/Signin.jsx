@@ -15,10 +15,9 @@ const openNotificationWithIcon = (type,message,desc) => {
 };
 
 class SigninForm extends React.Component {
-
-  
   
   handleSubmit = e => {
+
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
@@ -38,7 +37,28 @@ class SigninForm extends React.Component {
   };
 
   render() {
+    // console.log("@@@@@@@@@",this.props.userdetails.role)
+    if(this.props.userdetails!=undefined){
+
+      const {role}=this.props.userdetails;
+      if(role==0){
+        this.props.history.push("/candidate/jobs");
+      }else if(role==1){
+        this.props.history.push("/recruiter/jobs");
+      }else if (role==2){
+        this.props.history.push("/admin");
+      }
+
+    }
+   
+
     const { getFieldDecorator } = this.props.form;
+
+
+
+
+
+
     return (
       <div>
       <Navbar text="Sign up" to={SIGNUP}/>

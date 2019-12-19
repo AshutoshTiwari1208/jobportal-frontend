@@ -12,6 +12,7 @@ class JobsList extends Component {
         isApplied:false,
         page:1,
         limit:6,
+        textPop:"Want to delete this job?"
     }
 
 componentDidMount() {

@@ -3,6 +3,7 @@ import { Card,
 Button,
 Pagination,
 Spin,
+Popconfirm
 } from 'antd';
 import { connect } from 'react-redux';
 import {candidateDelete} from '../redux/actions/candidates';
@@ -17,7 +18,8 @@ class CandidatesList extends Component {
         isApplied:false,
         page:1,
         limit:6,
-        loading:true
+        loading:true,
+        textPop:"Want to Delete this candidate?"
     }
 
 componentDidMount() {
@@ -95,8 +97,13 @@ onChange = page => {
                 return (
                     <div className="cards">
                     <Card title={candidate.email}><p>Name:{candidate.name}<br/>ID:{candidate.id}</p>
-                     <Button type="danger" onClick={(e) =>  this.deleteCandidate(e,candidate.id)} disabled={candidate.isApplied}>Delete</Button>
-                     <Link type="primary" to="/candidate/jobs/applications"  disabled={candidate.isApplied}>Show Applied Jobs</Link>
+                     {/* <Button type="danger" onClick={(e) =>  this.deleteCandidate(e,candidate.id)} disabled={candidate.isApplied}>Delete</Button> */}
+                     <Popconfirm placement="right" title={this.state.textPop} disabled={candidate.isApplied} onConfirm={(e) => this.deleteCandidate(e,candidate.id)}  okText="Yes" cancelText="No">
+                             <Button type="danger"  disabled={candidate.isApplied}>Delete</Button>
+                             </Popconfirm>                   
+                   
+                   
+                   
                      </Card>
               </div>
                 ) 

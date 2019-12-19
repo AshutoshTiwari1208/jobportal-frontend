@@ -16,11 +16,20 @@ const { TextArea } = Input;
 
 class RecruiterHome extends React.Component {
   state={
-    redirect:false
+    redirect:false,
+    
+  }
+
+  static getDerivedStateFromProps(userData,state){
+    return {
+      ...state,
+      companyName: userData.userData.auth.userdetails.name
+    }
   }
     handleSubmit = e => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
+          console.log("%%%%%",values);
           if (!err) {
               this.props.postJob(values).then(response=>{
                 this.setState({
@@ -47,6 +56,20 @@ class RecruiterHome extends React.Component {
           <div className="wrapperForm">
           <Form  onSubmit={this.handleSubmit} className="login-form">
             <h2><strong>Publish New Job</strong></h2>
+
+            <Form.Item>
+              {getFieldDecorator('companyname', {
+                rules: [],
+                initialValue: this.state.companyName
+              })(
+                <Input
+                  prefix={<Icon type="copyright" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  disabled="true" value={this.state.companyName} defaultValue={this.state.companyName}
+                />,
+              )}
+            </Form.Item>
+            
+            
             <Form.Item>
               {getFieldDecorator('title', {
                 rules: [{ required: true, message: 'Please mention title of Job!' }],
@@ -61,8 +84,8 @@ class RecruiterHome extends React.Component {
               {getFieldDecorator('description', {
                 rules: [{ required: true, message: 'Please mention description of job!' }],
               })(
-                <TextArea rows={4}
-                  prefix={<Icon type="form" style={{ color: 'rgba(0,0,0,.25)' }}
+                <TextArea rows={9}
+                  prefix={<Icon type="edit" style={{ color: 'rgba(0,0,0,.25)' }}
                   rows={4} />}
                   
                   placeholder="Job Description"

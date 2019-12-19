@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import { Steps, Button, message, notification, Spin } from 'antd';
 import  {ForgetPass as ForgetPassword} from './ForgetPassword';
 import {forgetpassword} from '../redux/actions/auth';
@@ -8,7 +7,6 @@ import {ResetPass} from './ResetPassword';
 import {resetpassword} from '../redux/actions/auth';
 import Navbar from "../components/Navbar";
 import {SIGNUP,HOME} from "../constants/Routes";
-
 
 const { Step } = Steps;
 
@@ -23,12 +21,14 @@ class ForgetPassSteps extends React.Component {
   
   state = {
     current: 0,
-    loading: false
+    loading: false,
+    email: ''
   }
+
 
   next() {
     const current = this.state.current + 1;
-    this.setState({ current, loading: false });
+    this.setState({ current, loading: false, email:this.state.email });
   }
 
   prev() {
@@ -41,9 +41,12 @@ class ForgetPassSteps extends React.Component {
           loading: true
       })
       this.props.forgetpassword(values).then(response=>{
+          this.setState({
+            email :values.email
+          })
           this.next();
       }).catch(err=>{
-        openNotificationWithIcon('error',"Check Email","E-Mail you entered doesn't exists!")
+        // openNotificationWithIcon('error',"Check Email","E-Mail you entered doesn't exists!")
         this.setState({
             loading : false
         })
@@ -54,24 +57,26 @@ class ForgetPassSteps extends React.Component {
       this.props.resetpassword(values).then(response=>{
           message.success('Password Changed Successfully')
           this.props.history.push(HOME);
-      }).catch(err=>{
-            openNotificationWithIcon('error',err.response.data.errors[0].message);
-          
+      }).catch((err)=>{
+        console.log(err)
+          // openNotificationWithIcon('error', err.data.errors[0].message);
       })
   }
 
-  steps = [
-    {
-      title: 'ForgotPassword',
-      content: <ForgetPassword loading={this.state.loa} forgetpassword={this.handleResetRequest}/>,
-    },
-    {
-      title: 'ResetPassword',
-      content: <ResetPass resetpassword={this.handleFinalResetRequest} />,
-    },
-  ];
+  
 
   render() {
+
+    const steps = [
+      {
+        title: 'ForgotPassword',
+        content: <ForgetPassword loading={this.state.loading} forgetpassword={this.handleResetRequest}/>,
+      },
+      {
+        title: 'ResetPassword',
+        content: <ResetPass current={this.state.current} email={this.state.email} resetpassword={this.handleFinalResetRequest} />,
+      },
+    ];
     const { current, loading } = this.state;
     return (
         <div>
@@ -79,22 +84,22 @@ class ForgetPassSteps extends React.Component {
 
       <div className="wrapperForgetPass">
         <Steps current={current}>
-          {this.steps.map(item => (
+          {steps.map(item => (
             <Step key={item.title} title={item.title} />
           ))}
         </Steps> 
 
-        <div className="steps-content">{loading ? <span className="spin"><Spin /></span> : this.steps[current].content}</div>
+        <div className="steps-content">{loading ? <span className="spin"><Spin /></span> : steps[current].content}</div>
         <div className="steps-action" align="right">
-          {current < this.steps.length - 1 && (
+          {current < steps.length - 1 && (
           <Button type="default" onClick={() => this.next()}>
-            Aready Have An OTP?
+            Already Have An OTP?
             </Button>
           )}
 
           {current > 0 && (
             <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
-              Send OTP AGAIN
+                Go Back
             </Button>
           )}
         </div>

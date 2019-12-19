@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Card,
 Button,
 Pagination,
-Spin
+Spin,
+Popconfirm
 } from 'antd';
 import { connect } from 'react-redux';
 import {recruiterDelete,allRecruiters} from "../redux/actions/recruiters";
@@ -15,7 +16,8 @@ class RecruiterList extends Component {
         isApplied:false,
         page:1,
         limit:6,
-        loading:true
+        loading:true,
+        textPop:"Want to delete this recruiter"
     }
 
 componentDidMount() {
@@ -84,7 +86,13 @@ deleteRecruiter=(e,recruiterUuid)=>{//uuid kahan se ayegi jispe click hoga
                 return(
                     <div className="cards">
                     <Card title={recruiter.email}><p>{recruiter.name}<br/>ID:{recruiter.id}</p>
-                    <Button type="danger" onClick={(e) => this.deleteRecruiter(e,recruiter.id)} disabled={recruiter.isApplied}>Delete</Button>
+                    {/* <Button type="danger" onClick={(e) => this.deleteRecruiter(e,recruiter.id)} disabled={recruiter.isApplied}>Delete</Button> */}
+                    
+                    <Popconfirm placement="right" title={this.state.textPop} disabled={recruiter.isApplied} onConfirm={(e) => this.deleteRecruiter(e,recruiter.id)}   okText="Yes" cancelText="No">
+                             <Button type="danger"  disabled={recruiter.isApplied}>Delete</Button>
+                             </Popconfirm>
+                    
+                    
                     </Card>           
                  </div>
                 )

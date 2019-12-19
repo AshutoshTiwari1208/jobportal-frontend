@@ -34,13 +34,11 @@ componentDidMount() {
 
 
 onChange = page => {
-    console.log("PAGE CLICKED ::::",page);
     const pagination={
         page: page,
         limit:this.state.limit
     }
     this.props.getAppliedCandidates(this.props.jobId,pagination).then(response=>{
-        console.log("$$$$$$$$$$$$",response);
         this.setState({//set state will render the view again..
             total:response.metadata.count,
             list:response.data
@@ -67,7 +65,7 @@ onChange = page => {
                 list.map(candidate=>{
                 return (
                     <div className="cards">
-                    <Card title={candidate.email}>Name:{candidate.name}<br/>ID :{candidate.id}</Card>
+                    <Card title={candidate.name}>Contact:{candidate.email}<hr/>ID :{candidate.id}</Card>
                    </div>
                 ) 
                 })
