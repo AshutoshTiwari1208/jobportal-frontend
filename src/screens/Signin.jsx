@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Form, Icon, Input, Button,notification } from 'antd';
 import { connect } from 'react-redux'
 import {signin,signout} from '../redux/actions/auth';
-import { AVAILABLE_JOBS,CALL_CANDIDATE_BY_ADMIN,RECRUITER } from '../constants/Routes';
+import { AVAILABLE_JOBS,RECRUITER } from '../constants/Routes';
 import Navbar from "../components/Navbar";
 import { Link } from 'react-router-dom'
 import {SIGNUP,ADMIN_SIGNIN,SIGNIN,RESET_PASSWORD} from "../constants/Routes";

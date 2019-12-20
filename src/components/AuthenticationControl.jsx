@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
-import { Card,
-Button,
-Icon,
-Pagination,
+import {
 notification} from 'antd';
 import { connect } from 'react-redux';
-import {appliedjobslist} from "../redux/actions/jobs";
 import {HOME} from "../constants/Routes";
 import {signout} from "../redux/actions/auth";
+
+
 export function AuthenticationControl (Component){
 
 const openNotificationWithIcon = (type,message,desc) => {

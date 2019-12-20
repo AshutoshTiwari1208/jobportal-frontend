@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
-import {CALL_CANDIDATE_BY_ADMIN } from '../constants/Routes';
 
 
 class ForgetPassword extends React.Component {

@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import { Menu, Icon,Typography, Layout } from 'antd';
+import { Typography, Layout } from 'antd';
 import { Link } from 'react-router-dom'
 import {signout} from "../redux/actions/auth";
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux'
 
-const { SubMenu } = Menu;
 
 const { Title } = Typography;
 

@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import { Form, Icon, Input, Button, Checkbox, notification } from 'antd';
 import { connect } from 'react-redux'
 import {signin} from '../redux/actions/auth';
-import { CALL_CANDIDATE_BY_ADMIN } from '../constants/Routes';
 import Navbar from "../components/Navbar";
-import { Link } from 'react-router-dom'
 
 const openNotificationWithIcon = (type,message,desc) => {
   notification[type]({

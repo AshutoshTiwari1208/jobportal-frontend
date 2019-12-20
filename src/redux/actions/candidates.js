@@ -1,5 +1,4 @@
 import { ALL_CANDIDATES,DELETE_A_CANDIDATE,GET_CANDIDATE_BY_JOBID } from './../../constants/APIS';
-// import { browserHistory } from 'react-router'
 
 export const allCandidates=(meta) => (dispatch,getState,{axios})=>{
     return new axios.get(ALL_CANDIDATES,{params:meta}).then(response=>{

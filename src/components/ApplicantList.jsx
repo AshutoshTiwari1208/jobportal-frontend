@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { Card,
-Button,
-Icon,
 Spin,
 Pagination} from 'antd';
 import { connect } from 'react-redux';
