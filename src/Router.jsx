@@ -18,7 +18,7 @@ import AppliedJobs from "./screens/AppliedJobs";
 import {AuthenticationControl} from "./components/AuthenticationControl";
 import {SigninAdmin} from "./screens/AdminSignin";
 import {NoMatch} from "./components/NoMatch";
-import {SIGNIN,SIGNUP,CANDIDATE_HOME, NO_MATCH, ADMIN_SIGNIN, VIEW_APPLIED_JOBS,RESET_PASWORD,APPLICANT_FOR_JOB_ROUTE,FORGOT_PASSWORD,ALL_CANDIDATES,ALL_JOBS,ALL_RECRUITERS, ADMIN_DASHBOARD,RECRUITER_HOME,RECRUITER,RESET_PASSWORD}  from "./constants/Routes";
+import {SIGNIN,SIGNUP,CANDIDATE_HOME, NO_MATCH, HOME, ADMIN_SIGNIN, VIEW_APPLIED_JOBS,RESET_PASWORD,APPLICANT_FOR_JOB_ROUTE,FORGOT_PASSWORD,ALL_CANDIDATES,ALL_JOBS,ALL_RECRUITERS, ADMIN_DASHBOARD,RECRUITER_HOME,RECRUITER,RESET_PASSWORD}  from "./constants/Routes";
 // import {SIGNIN_ROUTE} from "./constants/Routes";
 
 
@@ -38,7 +38,7 @@ export const Router = () => (
         <Route  path={APPLICANT_FOR_JOB_ROUTE} component={AuthenticationControl(ApplicantsForJob)} />
         <Route exact path={FORGOT_PASSWORD} component={ForgetPass} />
         <Route exact path={RESET_PASWORD} component={ResetPass} />
-    <Route exact exact  path={SIGNIN} component={Signin} />
+    <Route exact   path={HOME} component={Signin} />
         <Route exact path={RESET_PASSWORD} component={ForgetPassStep} />
         <Route exact path={VIEW_APPLIED_JOBS} component={AuthenticationControl(AppliedJobs)} />
         <Route exact path={ADMIN_SIGNIN} component={SigninAdmin}/>
