@@ -16,13 +16,22 @@ const openNotificationWithIcon = (type,message,desc) => {
 
 class SigninForm extends React.Component {
   
+  state = { 
+    loading: false
+  }
+
   handleSubmit = e => {
 
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
+        this.setState({
+          loading: true
+        })
         this.props.signin(values).then(response=>{
-
+          this.setState({
+            loading: false
+          })
           if(response.role=="0")
            this.props.history.push(AVAILABLE_JOBS);
            if(response.role=="2"){
@@ -32,13 +41,16 @@ class SigninForm extends React.Component {
            }
             if(response.role=="1")
             this.props.history.push(RECRUITER);      
+        }).catch(err=>{
+          this.setState({
+            loading: false
+          })
         })
       }
     });
   };
 
-  render() {
-    // console.log("@@@@@@@@@",this.props.userdetails.role)
+  componentWillMount(){
     if(this.props.userdetails!=undefined){
 
       const {role}=this.props.userdetails;
@@ -51,12 +63,15 @@ class SigninForm extends React.Component {
       }
 
     }
-   
+  }
+
+  render() {
+    document.title = "Sign in";
+
+    // console.log("@@@@@@@@@",this.props.userdetails.role)
+    const { loading } = this.state;
 
     const { getFieldDecorator } = this.props.form;
-
-
-
 
     return (
       <div>
@@ -93,7 +108,7 @@ class SigninForm extends React.Component {
         </Form.Item>
         <Form.Item>
       
-          <Button type="primary" htmlType="submit" className="login-form-button">
+          <Button type="primary" htmlType="submit" className="login-form-button" loading={loading}>
             Log in
           </Button>
           <br/>

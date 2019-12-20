@@ -14,6 +14,8 @@ import {SIGNOUT} from "../constants/Routes";
       };
 
     render() {
+      document.title = "Applications";
+
         return (
             <div>
                 <Navbar text="Logout" to={SIGNOUT}/>
@@ -23,7 +25,10 @@ import {SIGNOUT} from "../constants/Routes";
                 <div align="right" className="linksDivRight">
                     <Link to="/recruiter"><span  className="linksRight"><u>Post New Job</u></span></Link>
                 </div> 
+                <div class="listCards">
+                <h2><center>Your Applied Jobs</center></h2>
                   <ApplicantsList jobId={this.props.match.params.jobId}/>
+                </div>
             </div>
         )
     }

@@ -12,6 +12,8 @@ import { Link } from 'react-router-dom'
       };
 
     render() {
+        document.title = "Jobs Posted";
+
         return (
             <div>
                 <Navbar text="Logout" to="/signout"/>

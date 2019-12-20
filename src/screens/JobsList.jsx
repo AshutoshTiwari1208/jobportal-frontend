@@ -13,6 +13,8 @@ class JobHome extends Component {
 	};
 
 	render() {
+		        document.title = "Jobs List";
+
 		return (
 			<div>
 				<div>

@@ -68,7 +68,7 @@ onChange = page => {
             list.map(jobs=>{
               return (
                 <div className="cards">
-                <Card title={jobs.job_title}>{jobs.job_description}<br/>ID :{jobs.id}</Card>
+                <Card title={jobs.job_title}>{jobs.job_description}<br/>ID :{jobs.id}<hr/>{jobs.companyname}</Card>
                </div>
               ) 
             })

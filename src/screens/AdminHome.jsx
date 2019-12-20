@@ -5,6 +5,7 @@ import {ALL_CANDIDATES,ALL_RECRUITERS,ALL_JOBS,SIGNOUT} from "../constants/Route
 import {Card,Col,Row} from "antd";
 export default class AdminHome extends Component {
     render() {
+        document.title = "Admin home";
         return (
               <div>
                 <Navbar text="Logout" to={SIGNOUT}/>

@@ -16,6 +16,8 @@ class ForgetPassword extends React.Component {
   };
 
   render() {
+    document.title = "Forgot Password";
+
     const { getFieldDecorator } = this.props.form;
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">

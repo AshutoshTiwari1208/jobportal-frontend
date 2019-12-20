@@ -99,7 +99,7 @@ deleteRecruiter=(e,recruiterUuid)=>{//uuid kahan se ayegi jispe click hoga
 
             })
         }
-             <Pagination onChange={this.onChange} total={this.state.total} pageSize={this.state.limit}/>   
+             <Pagination onChange={this.onChange} className="paginationblock" total={this.state.total} pageSize={this.state.limit}/>   
              </React.Fragment>
         )
     }  

@@ -13,6 +13,8 @@ import {SIGNOUT} from "../constants/Routes";
       };
 
     render() {
+      document.title = "Recruiter List";
+
         return (
             <div>
                 <div>

@@ -128,7 +128,7 @@ componentDidMount() {
                     list.map(item=>{
                         return ( ///FFINEE-----------------------------------------
                             <div className="cards">
-                             <Card title={item.job_title}><p><h5>Description<h6>{item.job_description}</h6></h5><hr/> <b>{item.companyname}</b></p>
+                             <Card title={item.job_title}><p><h2>Description </h2><h2>{item.job_description}</h2><hr/> <h4><b>{item.companyname}</b></h4></p>
                              <Popconfirm placement="right" title={this.state.textPop} disabled={item.isApplied} onConfirm={(e) => this.applyToJob(e,item.id)}  okText="Yes" cancelText="No">
                              <Button type="primary"  disabled={item.isApplied}>Apply</Button>
                              </Popconfirm>
@@ -139,7 +139,7 @@ componentDidMount() {
                 list.map(item=>{
                     return (
                         <div className="cards">
-                            <Card title={item.job_title}><p><h5>Description<h6>{item.job_description}</h6></h5><hr/> <b>{item.companyname}</b></p>
+                             <Card title={item.job_title}><p><h2>Description </h2><h2>{item.job_description}</h2><hr/> <h4><b>{item.companyname}</b></h4></p>
                              {/* <Button type="danger" onClick={(e) => this.delJob(e,item.id,item.isApplied)} disabled={item.isApplied}>Delete</Button> */}
                             
                              <Popconfirm placement="right" title={this.state.textPop} disabled={item.isApplied} onConfirm={(e) => this.delJob(e,item.id,item.isApplied)}   okText="Yes" cancelText="No">

@@ -26,6 +26,8 @@ class CandidateHome extends React.Component {
   };
 
   render() {
+    document.title = "Candidate home";
+
     const { availablejobs } = this.props; 
     return (
       <div>

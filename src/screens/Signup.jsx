@@ -16,6 +16,9 @@ import {
   const AutoCompleteOption = AutoComplete.Option;
   
   class SignupForm extends React.Component {
+    state = { 
+      loading: false
+    }
 
     state = {
       confirmDirty: false,
@@ -28,8 +31,14 @@ import {
       e.preventDefault();
       this.props.form.validateFieldsAndScroll((err, values) => {
         if (!err) {
+          this.setState({
+            loading: true
+          })
           // console.log('Received values of form: ', values);
           this.props.signup(values).then((data)=>{
+            this.setState({
+              loading: false
+            })
               if(data.role=="0"){
                   this.props.history.push(AVAILABLE_JOBS);
               }
@@ -37,6 +46,10 @@ import {
                 this.props.history.push(RECRUITER_HOME);
               }
         
+          }).catch(err=>{
+            this.setState({
+              loading: false
+            })
           })
         }
       });
@@ -84,6 +97,10 @@ import {
     }
   
     render() {
+      const { loading } = this.state;
+
+      document.title = "Sign up";
+
       const { getFieldDecorator } = this.props.form;
       const { autoCompleteResult } = this.state;
   
@@ -205,7 +222,7 @@ import {
           
 
           <Form.Item {...tailFormItemLayout}>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit"  loading={loading}>
               Sign up 
             </Button>
           </Form.Item>

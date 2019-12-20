@@ -66,6 +66,8 @@ class ForgetPassSteps extends React.Component {
   
 
   render() {
+    document.title = "Forgot Password";
+
 
     const steps = [
       {

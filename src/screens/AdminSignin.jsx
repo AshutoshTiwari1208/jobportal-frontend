@@ -35,12 +35,14 @@ class AdminSignin extends React.Component {
   };
 
   render() {
+    document.title = "Admin Signin";
+
     const { getFieldDecorator } = this.props.form;
     return (
       <div>
       <Navbar text="Not An Admin?" to="/signin"/>
       <Form onSubmit={this.handleSubmit} className="login-form" className="wrapperForm">
-          <h3><span class="adminh2">ADMIN</span> Sign in Window</h3>
+          <h1 align="center"><span class="adminh2">ADMIN</span> Sign in Window</h1>
         <Form.Item>
           {getFieldDecorator('email', {
             rules: [{ required: true, message: 'Please input your email!' }],

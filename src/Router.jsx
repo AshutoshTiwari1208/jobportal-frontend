@@ -22,22 +22,22 @@ export const Router = () => (
     <AppRouter>
         <Switch>
         <Route exact path="/"           component={Signin} />
-        <Route path="/signup"           component={Signup} />
-        <Route path="/dashboard"        component={App} />
-        <Route exact  path ="/candidate/jobs" component={AuthenticationControl(CandidateJobs)}/>
-        <Route path ="/admin/candidates/"   component={AuthenticationControl(CandidateList)} />
-        <Route path ="/admin/recruiters/"   component={AuthenticationControl(RecruiterList)} />
-        <Route path="/admin/jobs" component={AuthenticationControl(JobHome)} />
+        <Route exact path="/signup"           component={Signup} />
+        <Route exact path="/dashboard"        component={App} />
+        <Route exact path ="/candidate/jobs" component={AuthenticationControl(CandidateJobs)}/>
+        <Route exact path ="/admin/candidates/"   component={AuthenticationControl(CandidateList)} />
+        <Route exact path ="/admin/recruiters/"   component={AuthenticationControl(RecruiterList)} />
+        <Route exact path="/admin/jobs" component={AuthenticationControl(JobHome)} />
         <Route exact path='/admin' component={AuthenticationControl(AdminHome)} />
         <Route exact path ="/recruiter" component={AuthenticationControl(RecruiterPostJobs)}  />
         <Route exact path="/recruiter/jobs" component={AuthenticationControl(PostedJobs)} />
         <Route  path="/recruiter/jobs/:jobId" component={AuthenticationControl(ApplicantsForJob)} />
-        <Route path="/forgetpassword" component={ForgetPass} />
-        <Route path="/resetpassword" component={ResetPass} />
-        <Route exact  path="/signin" component={Signin} />
-        <Route path="/resetpasswordsteps" component={ForgetPassStep} />
-        <Route path="/candidate/jobs/applications" component={AuthenticationControl(AppliedJobs)} />
-        <Route path="/adminsignin" component={SigninAdmin}/>
+        <Route exact path="/forgetpassword" component={ForgetPass} />
+        <Route exact path="/resetpassword" component={ResetPass} />
+        <Route exact exact  path="/signin" component={Signin} />
+        <Route exact path="/resetpasswordsteps" component={ForgetPassStep} />
+        <Route exact path="/candidate/jobs/applications" component={AuthenticationControl(AppliedJobs)} />
+        <Route exact path="/adminsignin" component={SigninAdmin}/>
         <Route path="*">
             <NoMatch/>
         </Route>

@@ -29,6 +29,10 @@
   color: #61dafb;
 }
 
+@-ms-viewport{
+  width: device-width;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -43,9 +47,9 @@ Form{
 }
 
 .wrapperForm{
-  margin-left:25% !important;
+  margin-left:30% !important;
   margin-top:6% !important;
-  width:60% !important;
+  width:40% !important;
 }
 
 .wrapperForgetPass{
@@ -56,9 +60,9 @@ Form{
 
 .listCards{
   margin-left:25% !important;
-  margin-top:5% !important;
+  margin-top:2% !important;
   /* margin-right:20% !important; */
-  width:60% !important;
+  width:50% !important;
 }
 
 .cards{
@@ -138,11 +142,16 @@ h4, h2 {
   }
 
   h2{
-    text-decoration: underline;
     margin-bottom:5% !important;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
   }
 
   h3{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+  }
+
+  .ant-card-body p{
+    word-break: break-all;
   }

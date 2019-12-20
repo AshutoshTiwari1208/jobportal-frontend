@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Icon, Input, Button,Tooltip,InputNumber, Checkbox } from 'antd';
+import { Form, Icon, Input, Button,Tooltip,message } from 'antd';
 import { connect } from 'react-redux'
 import {resetpassword} from '../redux/actions/auth';
 
@@ -10,8 +10,11 @@ class ResetPassword extends React.Component {
       
       if (!err) { 
         delete values.confirm;
-        this.props.resetpassword(values);    
-
+        if(isNaN(values.otp)){
+          message.error('OTP can only be digits');
+        }else{
+          this.props.resetpassword(values);    
+        }
       }
     });
   };
@@ -44,6 +47,8 @@ class ResetPassword extends React.Component {
 
 
   render() {
+    document.title = "Reset Password";
+
    
     const { getFieldDecorator } = this.props.form;
     const { email } = this.props;

@@ -29,7 +29,6 @@ class RecruiterHome extends React.Component {
     handleSubmit = e => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
-          console.log("%%%%%",values);
           if (!err) {
               this.props.postJob(values).then(response=>{
                 this.setState({
@@ -41,6 +40,8 @@ class RecruiterHome extends React.Component {
       };
     
       render() {
+        document.title = "Recruiter Home";
+
         if (this.state.redirect) {
           return <Redirect to='/recruiter/jobs'/>;
         }

@@ -96,7 +96,7 @@ onChange = page => {
                 list.map(candidate=>{
                 return (
                     <div className="cards">
-                    <Card title={candidate.email}><p>Name:{candidate.name}<br/>ID:{candidate.id}</p>
+                    <Card title={candidate.name}><p>Contact:{candidate.email}<br/>ID:{candidate.id}</p>
                      {/* <Button type="danger" onClick={(e) =>  this.deleteCandidate(e,candidate.id)} disabled={candidate.isApplied}>Delete</Button> */}
                      <Popconfirm placement="right" title={this.state.textPop} disabled={candidate.isApplied} onConfirm={(e) => this.deleteCandidate(e,candidate.id)}  okText="Yes" cancelText="No">
                              <Button type="danger"  disabled={candidate.isApplied}>Delete</Button>
@@ -109,7 +109,7 @@ onChange = page => {
                 ) 
                 })
             }
-            <Pagination onChange={this.onChange} total={this.state.total} pageSize={this.state.limit}/>   
+            <Pagination onChange={this.onChange}  className="paginationblock" total={this.state.total} pageSize={this.state.limit}/>   
             </React.Fragment>
         );
     }

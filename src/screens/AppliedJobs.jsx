@@ -15,6 +15,8 @@ class AppliedJobs extends React.Component {
 
   
   render() {
+    document.title = "Applied Jobs";
+
 
     const { allCandidates } = this.props; //took out function and passed
     return (
