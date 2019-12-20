@@ -24,7 +24,7 @@ class AdminSignin extends React.Component {
             this.props.history.push("/admin");
         
            else {
-            this.props.history.push("signin");
+            this.props.history.push("/signin");
             openNotificationWithIcon('error',"You are not an admin");
 
             
@@ -42,7 +42,7 @@ class AdminSignin extends React.Component {
       <div>
       <Navbar text="Not An Admin?" to="/signin"/>
       <Form onSubmit={this.handleSubmit} className="login-form" className="wrapperForm">
-          <h2><span class="adminh2">ADMIN</span> SIGNIN WINDOW</h2>
+          <h3><span class="adminh2">ADMIN</span> Sign in Window</h3>
         <Form.Item>
           {getFieldDecorator('email', {
             rules: [{ required: true, message: 'Please input your email!' }],

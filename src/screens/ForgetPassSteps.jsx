@@ -80,7 +80,7 @@ class ForgetPassSteps extends React.Component {
     const { current, loading } = this.state;
     return (
         <div>
-         <Navbar text="Signup" to={SIGNUP}/>
+         <Navbar text="Sign up" to={SIGNUP}/>
 
       <div className="wrapperForgetPass">
         <Steps current={current}>
