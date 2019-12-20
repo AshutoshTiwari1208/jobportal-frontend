@@ -14,17 +14,17 @@ export default class AdminHome extends Component {
 
                   <Row gutter={16}>
                     <Col span={8}><Link to={ALL_CANDIDATES}>
-                      <Card title="Candidates" bordered={false}>
+                      <Card title="Candidates" bordered={false} hoverable>
                       All candidates with their email and Id's are listed. Manage Candidates here.
                       </Card></Link>
                     </Col>
                     <Col span={8}><Link to={ALL_RECRUITERS}>
-                      <Card title="Recruiters" bordered={false}>
+                      <Card title="Recruiters" bordered={false} hoverable>
                       All Recruiters with their email and Id's are listed. Manage Recruiters here.
                       </Card></Link>
                     </Col>
                     <Col span={8}><Link to={ALL_JOBS}>
-                      <Card title="Jobs Available" bordered={false}>
+                      <Card title="Jobs Available" bordered={false} hoverable>
                       Here you can manage the jobs posted by Recruiters. Click on Jobs above to view.
                       </Card></Link>
                     </Col>

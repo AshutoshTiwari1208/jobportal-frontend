@@ -14,4 +14,8 @@ export const ADMIN_DASHBOARD="/admin";
 export const ADMIN_SIGNIN="/adminsignin";
 export const RESET_PASSWORD="/resetpasswordsteps";
 export const RECRUITER="/recruiter";
+export const  APPLICANT_FOR_JOB_ROUTE="/recruiter/jobs/:jobId";
+export const FORGOT_PASSWORD = "/forgetpassword";
+export const RESET_PASWORD = '/resetpassword';
+export const NO_MATCH = '/*'
 
