@@ -21,7 +21,7 @@ import { Link } from 'react-router-dom'
                     <Link to="/recruiter"><span  className="links"><u>Post a Job !!</u></span></Link>
                 </div> 
                 <div className="listCards">
-                <h2><center>Your Posted Jobs Will Appear Here</center></h2>
+                <h1><center>Your Posted Jobs Will Appear Here</center></h1>
                     <PostedJobList />
                 </div>     
             </div>

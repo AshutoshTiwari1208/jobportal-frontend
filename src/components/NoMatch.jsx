@@ -4,12 +4,12 @@ export  class NoMatch extends Component {
     render() {
         return (
             <div>
-                <h2><center>You have lost your way</center></h2>
-                <center> <Link to="/signin">Click here to go to Sign in page</Link>
+                <div className="lostWay">
+                <center><h1>404 | Unauthorized Access</h1></center>
+                <center><h2><Link to="/signin"><span className="signinPage">Click here to go to Sign in page</span></Link></h2> 
                 </center>
-                <hr/>
-                <center><h1>404</h1></center>
                 </div>
+             </div>
         )
     }
 }

@@ -59,6 +59,7 @@ Form{
 }
 
 .listCards{
+  /* font-size:2em; */
   margin-left:25% !important;
   margin-top:2% !important;
   /* margin-right:20% !important; */
@@ -67,8 +68,17 @@ Form{
 
 .cards{
   margin-bottom:7% !important;
+  font-size:2em !important;
+  /* font-family: 'Times New Roman', Times, serif !important; */
 }
 
+.lostWay{
+  margin-top:15%;
+}
+
+.signinPage{
+  margin-top:30%;
+}
 
 h4, h2 {
   margin: 0 ;
@@ -143,12 +153,11 @@ h4, h2 {
 
   h2{
     margin-bottom:5% !important;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-
+font-family: 'Times New Roman', Times, serif;
   }
 
   h3{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Times New Roman', Times, serif;
 
   }
 

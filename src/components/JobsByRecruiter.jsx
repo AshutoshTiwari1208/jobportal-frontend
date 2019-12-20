@@ -75,9 +75,9 @@ onChange = page => {
                 return(
 
                     <div className="cards">
-                    <Card title={jobs.job_title}><p>{jobs.job_description}</p>
+                   <h1><Card title={jobs.job_title}><p><h3>{jobs.job_description}</h3></p> 
                     <Link to={linkto}>View Applications</Link>
-                    </Card>
+                    </Card></h1>
               </div>
                 )
             })

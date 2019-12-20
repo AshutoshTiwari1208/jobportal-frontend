@@ -35,7 +35,7 @@ class AdminSignin extends React.Component {
   };
 
   render() {
-    document.title = "Admin Signin";
+    document.title = "Admin Sign in";
 
     const { getFieldDecorator } = this.props.form;
     return (
