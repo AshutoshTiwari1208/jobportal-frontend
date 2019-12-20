@@ -7,6 +7,7 @@ notification} from 'antd';
 import { connect } from 'react-redux';
 import {appliedjobslist} from "../redux/actions/jobs";
 import {HOME} from "../constants/Routes";
+import {signout} from "../redux/actions/auth";
 export function AuthenticationControl (Component){
 
 const openNotificationWithIcon = (type,message,desc) => {
@@ -36,22 +37,25 @@ const openNotificationWithIcon = (type,message,desc) => {
                 //         this.state.isAuthenticated=false;
                 // }
                 if(this.props.location.pathname.startsWith("/admin")&&(role != "2")){
-                    history.push("/adminsignin");
+                    this.props.signout();
+                    history.push("/signin");
                     openNotificationWithIcon('error',"Not authorized to Access this route");
-
+                    
                     this.state.isAuthenticated=false;
                 }
                 else if(this.props.location.pathname.startsWith("/candidate")&& role!="0"){
+                    this.props.signout();
                     history.push(HOME);
                     openNotificationWithIcon('error',"Not authorized to Access this route");
 
                     this.state.isAuthenticated=false;
                 }
                 else if(this.props.location.pathname.startsWith("/recruiter")&& role!="1"){
+                   this.props.signout(); 
                     history.push("/signin");
                     openNotificationWithIcon('error',"Not authorized to Access this route");
-
                     this.state.isAuthenticated=false;
+
 
                 }
             }
@@ -79,7 +83,7 @@ const openNotificationWithIcon = (type,message,desc) => {
         })
     }
     
-    return connect(mapStateToProps,{})(authControl);
+    return connect(mapStateToProps,{signout})(authControl);
 }
 
 

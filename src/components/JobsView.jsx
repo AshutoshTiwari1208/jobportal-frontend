@@ -4,7 +4,8 @@ Button,
 Pagination,
 Icon,
 Popconfirm,
-Spin} from 'antd';
+Spin,
+} from 'antd';
 import {applyForJob, availablejobs,deleteJob,allJobs} from "../redux/actions/jobs";
 import { connect } from 'react-redux';
 

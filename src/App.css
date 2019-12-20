@@ -119,11 +119,13 @@ h4, h2 {
   width:50% !important;}
 
   .h2WrapperSignup{
-    margin-top:10% !important;
+    margin-top:6% !important;
     color:blue;
     text-decoration: underline;
     text-decoration-color: mediumblue ;
     text-shadow: 1px 1px gray;
+    font-size: 2em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   }
 
   .login-form{

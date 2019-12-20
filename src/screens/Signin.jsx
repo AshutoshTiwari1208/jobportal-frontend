@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Icon, Input, Button,notification } from 'antd';
 import { connect } from 'react-redux'
-import {signin} from '../redux/actions/auth';
+import {signin,signout} from '../redux/actions/auth';
 import { AVAILABLE_JOBS,CALL_CANDIDATE_BY_ADMIN,RECRUITER } from '../constants/Routes';
 import Navbar from "../components/Navbar";
 import { Link } from 'react-router-dom'
@@ -26,8 +26,9 @@ class SigninForm extends React.Component {
           if(response.role=="0")
            this.props.history.push(AVAILABLE_JOBS);
            if(response.role=="2"){
+             this.props.signout();
+            openNotificationWithIcon('error',"ADMIN CAN'T GOT THROUGH THIS ROUTE");
             this.props.history.push(SIGNIN);
-              openNotificationWithIcon('error',"ADMIN CAN'T GOT THROUGH THIS ROUTE");
            }
             if(response.role=="1")
             this.props.history.push(RECRUITER);      
@@ -53,8 +54,6 @@ class SigninForm extends React.Component {
    
 
     const { getFieldDecorator } = this.props.form;
-
-
 
 
 
@@ -119,5 +118,5 @@ const mapStateToProps = ({auth}) => {
   })
  }
  
-SigninForm = connect(mapStateToProps, {signin}) (SigninForm);
+SigninForm = connect(mapStateToProps, {signin,signout}) (SigninForm);
 export const Signin = Form.create({ name: 'normal_signin' })(SigninForm);

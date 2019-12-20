@@ -20,6 +20,8 @@ import {
     state = {
       confirmDirty: false,
       autoCompleteResult: [],
+      nameFieldText: "Name",
+      isVisible:false
     };
   
     handleSubmit = e => {
@@ -71,6 +73,15 @@ import {
       }
       this.setState({ autoCompleteResult });
     };
+
+    recruiterClicked=()=>{
+      this.state.nameFieldText="Company Name";
+      this.state.isVisible=true
+    }
+    candidateClicked=()=>{
+      this.state.nameFieldText="Your  Name"
+      this.state.isVisible=true
+    }
   
     render() {
       const { getFieldDecorator } = this.props.form;
@@ -102,6 +113,8 @@ import {
       const websiteOptions = autoCompleteResult.map(website => (
         <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
       ));
+
+    
   
       return (
         <div >
@@ -110,6 +123,35 @@ import {
         <h3 align="center"><span  className="h2WrapperSignup">Sign up for a New Account</span></h3>
 
         <Form {...formItemLayout} onSubmit={this.handleSubmit} className="wrapperFormSignup">
+
+
+
+        <Form.Item label="Your Profile">
+            {getFieldDecorator('role',{
+                rules:[{required: true,message: "Please select your role!"}]
+            })(
+                <Radio.Group>
+                <Radio.Button value="0" onClick={this.candidateClicked}>I am a Candidate</Radio.Button>
+                <Radio.Button value="1" onClick={this.recruiterClicked}>I am a Recruiter</Radio.Button>
+                </Radio.Group>,
+            )}
+          </Form.Item>
+
+
+          <Form.Item style={{display: this.state.isVisible ? 'block' : 'none' }}
+            label={
+              <span>
+                { this.state.nameFieldText}&nbsp;
+                <Tooltip title="Please write official name seperated with spaces">
+                  <Icon type="question-circle-o" />
+                </Tooltip>
+              </span>
+            }
+          >
+            {getFieldDecorator('name', {
+              rules: [{ required: true, message: 'Please input your name!', whitespace: true }],
+            })(<Input />)}
+          </Form.Item>
 
           <Form.Item label="E-Mail">
             {getFieldDecorator('email', { //check
@@ -158,59 +200,9 @@ import {
           })(<Input.Password onBlur={this.handleConfirmBlur} />)}
         </Form.Item>
 
+       
 
-          {/* <Form.Item  label={
-              <span>
-                Password&nbsp;
-                <Tooltip title="Password must be minimum 6 character long ">
-                  <Icon type="question-circle-o" />
-                </Tooltip>
-              </span>
-            } hasFeedback>
-            {getFieldDecorator('password', {
-              rules: [
-                {
-                  required: true,
-                  message: 'Please input your password!',
-                },
-                {
-                    min:6,
-                    message:"Password should be minimum of 6 character"
-                },
-                {
-                  validator: this.validateToNextPassword,
-                },
-              ],
-            })(<Input.Password />)}
-          </Form.Item> */}
-      
-
-
-          <Form.Item
-            label={
-              <span>
-                Name&nbsp;
-                <Tooltip title="Please write full name seperated with space - eg. Aman Kumar">
-                  <Icon type="question-circle-o" />
-                </Tooltip>
-              </span>
-            }
-          >
-            {getFieldDecorator('name', {
-              rules: [{ required: true, message: 'Please input your name!', whitespace: true }],
-            })(<Input />)}
-          </Form.Item>
-
-          <Form.Item label="Your Profile">
-            {getFieldDecorator('role',{
-                rules:[{required: true,message: "Please select your role!"}]
-            })(
-                <Radio.Group>
-                <Radio.Button value="0">I am a Candidate</Radio.Button>
-                <Radio.Button value="1">I am a Recruiter</Radio.Button>
-                </Radio.Group>,
-            )}
-          </Form.Item>
+          
 
           <Form.Item {...tailFormItemLayout}>
             <Button type="primary" htmlType="submit">
