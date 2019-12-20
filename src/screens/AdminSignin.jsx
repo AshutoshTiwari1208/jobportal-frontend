@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Icon, Input, Button, Checkbox, notification } from 'antd';
 import { connect } from 'react-redux'
-import {signin} from '../redux/actions/auth';
+import {signin,signout} from '../redux/actions/auth';
 import Navbar from "../components/Navbar";
 
 const openNotificationWithIcon = (type,message,desc) => {
@@ -22,6 +22,7 @@ class AdminSignin extends React.Component {
             this.props.history.push("/admin");
         
            else {
+             this.props.signout();
             this.props.history.push("/signin");
             openNotificationWithIcon('error',"You are not an admin");
 
@@ -89,7 +90,7 @@ const mapStateToProps = ({auth}) => {
  
 
 
- AdminSignin = connect(mapStateToProps, {signin}) (AdminSignin);//take then send
+ AdminSignin = connect(mapStateToProps, {signin,signout}) (AdminSignin);//take then send
 export const SigninAdmin = Form.create({ name: 'normal_signin' })(AdminSignin);
 
 // ReactDOM.render(<Signin />, mountNode);

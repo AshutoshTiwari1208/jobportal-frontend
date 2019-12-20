@@ -38,7 +38,7 @@ export const Router = () => (
         <Route  path={APPLICANT_FOR_JOB_ROUTE} component={AuthenticationControl(ApplicantsForJob)} />
         <Route exact path={FORGOT_PASSWORD} component={ForgetPass} />
         <Route exact path={RESET_PASWORD} component={ResetPass} />
-    <Route exact   path={HOME} component={Signin} />
+        <Route exact   path={HOME} component={Signin} />
         <Route exact path={RESET_PASSWORD} component={ForgetPassStep} />
         <Route exact path={VIEW_APPLIED_JOBS} component={AuthenticationControl(AppliedJobs)} />
         <Route exact path={ADMIN_SIGNIN} component={SigninAdmin}/>
