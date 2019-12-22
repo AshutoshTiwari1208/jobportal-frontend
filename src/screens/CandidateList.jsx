@@ -13,6 +13,8 @@ class CandidateHome extends React.Component {
   };
 
   render() {
+    document.title = "Candidate List";
+
 
     const { allCandidates } = this.props; 
     return (

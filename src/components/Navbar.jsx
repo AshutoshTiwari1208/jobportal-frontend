@@ -54,24 +54,20 @@ class Navbar extends React.Component {
 
     return (
     //   <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
-  
-    <Layout
-        style={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            padding: '5px 10px'
-        }}
-       >
+      
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <Link to={this.state.path}><img height="60" width="80"  src="http://www.thejobsportal.co.uk/assets/img/Logo@2x.png"/></Link> 
+      </div>
+        <ul class=" navbar-right fixright nav"><h1><i>
+          <li><Link  onClick={(e) => this.handleClick(e,to)} to={to}>{text}</Link></li>
+          </i></h1></ul>
 
-            <Title level={2}key="mail">
-            <Link to={this.state.path}>Job portal</Link> 
-            </Title>
-            <Title level={4} key="mail">
-            <Link onClick={(e) => this.handleClick(e,to)} to={to}>{text}</Link>
-            </Title>
-       </Layout>
+    </div>
+  </nav>
+
+   
     )
 }
 
@@ -83,7 +79,27 @@ const mapStateToProps=(store)=>{
   })
 }  
 
-
-
-
 export default connect(mapStateToProps, { signout })(Navbar);
+
+
+
+
+
+
+// <Layout
+// style={{
+//     display: 'flex',
+//     flexDirection: 'row',
+//     justifyContent: 'space-between',
+//     alignItems: 'center',
+//     padding: '5px 10px'
+// }}
+// >
+
+//     <Title level={2}key="mail">
+//     <Link to={this.state.path}>Job portal</Link> 
+//     </Title>
+//     <Title level={4} key="mail">
+//     <Link onClick={(e) => this.handleClick(e,to)} to={to}>{text}</Link>
+//     </Title>
+// </Layout>

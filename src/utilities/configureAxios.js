@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {notification} from 'antd';
+import {notification,message} from 'antd';
 
 const configureAxios = () => {
     return axios.create({
@@ -39,8 +39,13 @@ axiosInstance.interceptors.response.use(response => {
 
     }
     else if(err.response.data.code==401){
+        if(saveError==undefined){
+            let saveError=err.response.data.message;
+            message.error(saveError);
 
+        }else{
         openNotificationWithIcon('error',"ERROR OCCURED",saveError);
+        }
     }
     else{
         if(isNaN(saveError[0])){
