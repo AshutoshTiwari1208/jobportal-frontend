@@ -8,7 +8,6 @@ Popconfirm
 import { connect } from 'react-redux';
 import {candidateDelete} from '../redux/actions/candidates';
 import {allCandidates} from "../redux/actions/candidates";
-import {Link} from "react-router-dom";
 
 
 class CandidatesList extends Component {

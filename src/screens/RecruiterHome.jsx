@@ -17,6 +17,7 @@ const { TextArea } = Input;
 class RecruiterHome extends React.Component {
   state={
     redirect:false,
+    loading:false
     
   }
 
@@ -30,11 +31,19 @@ class RecruiterHome extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
           if (!err) {
+            this.setState({
+              loading:true
+            })
               this.props.postJob(values).then(response=>{
                 this.setState({
-                  redirect:true
+                  redirect:true,
+                  loading:false
                 })
-              });
+              }).catch(err=>{
+                this.setState({
+                  loading:false
+                })
+              })
           }
         });
       };
@@ -45,6 +54,7 @@ class RecruiterHome extends React.Component {
         if (this.state.redirect) {
           return <Redirect to='/recruiter/jobs'/>;
         }
+        const { loading } = this.state;
         const { getFieldDecorator } = this.props.form;
         return (
           <div>
@@ -94,7 +104,7 @@ class RecruiterHome extends React.Component {
               )}
             </Form.Item>
             <Form.Item>
-              <Button type="primary" htmlType="submit" className="login-form-button">
+              <Button type="primary" htmlType="submit" className="login-form-button" loading={loading}>
                 Publish Job
               </Button>
             </Form.Item>
@@ -115,4 +125,3 @@ const mapStateToProps=state=>{
 RecruiterHome=connect(mapStateToProps,{postJob})(RecruiterHome);
 
 export const RecruiterPostJobs = Form.create({ name: 'candidateJobs' })(RecruiterHome);
-

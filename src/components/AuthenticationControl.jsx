@@ -52,8 +52,6 @@ const openNotificationWithIcon = (type,message,desc) => {
                     history.push("/signin");
                     openNotificationWithIcon('error',"Not authorized to Access this route");
                     this.state.isAuthenticated=false;
-
-
                 }
             }
 
@@ -62,7 +60,6 @@ const openNotificationWithIcon = (type,message,desc) => {
         render(){
            return(
            <div>
-           
             { 
             this.state.isAuthenticated==true ?
                 <Component {...this.props}/> //which props?
