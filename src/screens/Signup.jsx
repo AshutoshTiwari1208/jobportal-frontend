@@ -34,7 +34,6 @@ import {
           this.setState({
             loading: true
           })
-          // console.log('Received values of form: ', values);
           this.props.signup(values).then((data)=>{
             this.setState({
               loading: false

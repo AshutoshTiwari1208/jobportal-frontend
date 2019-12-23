@@ -58,7 +58,6 @@ class ForgetPassSteps extends React.Component {
           message.success('Password Changed Successfully')
           this.props.history.push(HOME);
       }).catch((err)=>{
-        console.log(err)
           // openNotificationWithIcon('error', err.data.errors[0].message);
       })
   }

@@ -35,7 +35,6 @@ componentDidMount() {
 }
    
 onChange = page => {
-    console.log("PAGE CLICKED ::::",page);
     const pagination={
         page: page,
         limit:this.state.limit

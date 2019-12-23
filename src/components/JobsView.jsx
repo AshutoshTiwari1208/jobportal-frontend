@@ -57,7 +57,6 @@ componentDidMount() {
 
 
     applyToJob=(e,jobUuid)=>{
-        // console.log("APPLY TO JOB ",jobUuid);
         e.preventDefault();
 
         let jobDetails= this.props.applyForJob(jobUuid).then(data=>{

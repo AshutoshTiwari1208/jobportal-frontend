@@ -32,7 +32,6 @@ axiosInstance.interceptors.response.use(response => {
 }, err=>{
     const saveError=err.response.data.errors;
 
-    console.log("ERROR HANDLED:",err.response);
     if(err.response.status==422){
         openNotificationWithIcon('error',"ERROR OCCURED",saveError);
 
@@ -51,7 +50,6 @@ axiosInstance.interceptors.response.use(response => {
         if(isNaN(saveError[0])){
             openNotificationWithIcon('error',"ERROR OCCURED",saveError);
         }else{
-            console.log(saveError)
             openNotificationWithIcon('error',"ERROR OCCURED",saveError[0].message);
         }
 

@@ -68,7 +68,6 @@ class SigninForm extends React.Component {
   render() {
     document.title = "Sign in";
 
-    // console.log("@@@@@@@@@",this.props.userdetails.role)
     const { loading } = this.state;
 
     const { getFieldDecorator } = this.props.form;
