@@ -19,7 +19,9 @@ class JobsView extends Component {
         limit:6,
         total: 0,
         loading: false,
-        textPop:"Want to apply to this job?"
+        textPop:"Want to apply to this job?",
+        textDelPop:"Want to delete this job?"
+
     }
 
 componentDidMount() {
@@ -139,7 +141,7 @@ componentDidMount() {
                     return (
                         <div className="cards">
                              <Card title={item.job_title}>Description <p>{item.job_description}<hr/> <b>{item.companyname}</b></p>                            
-                             <Popconfirm placement="right" title={this.state.textPop} disabled={item.isApplied} onConfirm={(e) => this.delJob(e,item.id,item.isApplied)}   okText="Yes" cancelText="No">
+                             <Popconfirm placement="right" title={this.state.textDelPop} disabled={item.isApplied} onConfirm={(e) => this.delJob(e,item.id,item.isApplied)}   okText="Yes" cancelText="No">
                              <Button type="danger"  disabled={item.isApplied}>Delete</Button>
                              </Popconfirm>
                              </Card>

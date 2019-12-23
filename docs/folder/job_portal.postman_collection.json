@@ -1,0 +1,741 @@
+{
+	"info": {
+		"_postman_id": "a54d272a-790d-4b59-86cc-0856e391055f",
+		"name": "job_portal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Signup",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "admin@gmail.com",
+									"description": "E-Mail",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "adminadmin",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Admin",
+									"description": "Your Name",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "2",
+									"description": "0->Candidate | 1->Recruiter | 2->Admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.atjp.squareboat.info/api/v1/signup",
+							"protocol": "https",
+							"host": [
+								"api",
+								"atjp",
+								"squareboat",
+								"info"
+							],
+							"path": [
+								"api",
+								"v1",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signin",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiMSIsInVzZXJpZCI6Ijg4NmNjYTMwLTFmMDUtMTFlYS04YmEzLWUxYzI2ZWRjNzNhMCIsImlhdCI6MTU3NjM5MTkyMSwiZXhwIjoxNTc4MTkxOTIxfQ.0jf6rUac6ChZTQMQBpj2egItNYPh-IJd_5jCwJn1THU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "admin@gmail.com",
+									"description": "E-Mail",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "adminadmin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/signin",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"signin"
+							]
+						},
+						"description": "signin"
+					},
+					"response": []
+				},
+				{
+					"name": "Forget Password",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "addsfdsfmin@gmail.com",
+									"description": "<----Type Email ",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/forgetpassword",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"forgetpassword"
+							]
+						},
+						"description": "Forget Password"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "admin@gmail.com",
+									"description": "<----Email",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "adminadmin",
+									"description": "<--New Password",
+									"type": "text"
+								},
+								{
+									"key": "otp",
+									"value": "928821",
+									"description": "<--Your OTP",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/resetpassword",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resetpassword"
+							]
+						},
+						"description": "Password Reset"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Candidate",
+			"item": [
+				{
+					"name": "Get Available Jobs",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiMCIsInVzZXJpZCI6IjdiMTQwZWUwLTIxNmYtMTFlYS04NGUwLTMzNWFlZjZjODg5ZiIsImlhdCI6MTU3NjY1NzMyNywiZXhwIjoxNTc4NDU3MzI3fQ.LjHN55dvJgmDPD7B40OywHEaif-GKjhyZvGuTrYv-_A",
+								"description": "Pass Token",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/jobs?limit=4&page=2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"jobs"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "4"
+								},
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						},
+						"description": "Unapplied Jobs"
+					},
+					"response": []
+				},
+				{
+					"name": "Apply to a Job",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiMCIsInVzZXJpZCI6IjdiMTQwZWUwLTIxNmYtMTFlYS04NGUwLTMzNWFlZjZjODg5ZiIsImlhdCI6MTU3NjY1NzMyNywiZXhwIjoxNTc4NDU3MzI3fQ.LjHN55dvJgmDPD7B40OywHEaif-GKjhyZvGuTrYv-_A",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/jobs/9c3532c0-216f-11ea-84e0-335aef6c889f",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"jobs",
+								"9c3532c0-216f-11ea-84e0-335aef6c889f"
+							]
+						},
+						"description": "Apply to job"
+					},
+					"response": []
+				},
+				{
+					"name": "Applied Jobs",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiMCIsInVzZXJpZCI6IjdiMTQwZWUwLTIxNmYtMTFlYS04NGUwLTMzNWFlZjZjODg5ZiIsImlhdCI6MTU3NjY1NzMyNywiZXhwIjoxNTc4NDU3MzI3fQ.LjHN55dvJgmDPD7B40OywHEaif-GKjhyZvGuTrYv-_A"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/applications?page=1&limit=2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"applications"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								}
+							]
+						},
+						"description": "Submitted Applications by Candidate"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Recruiters",
+			"item": [
+				{
+					"name": "Post new Job",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiMSIsInVzZXJpZCI6IjkxMmRkZDUwLTIxNmYtMTFlYS04NGUwLTMzNWFlZjZjODg5ZiIsImlhdCI6MTU3NjY1NzM2NCwiZXhwIjoxNTc4NDU3MzY0fQ.V91BCxpGlLe0NDm9UbBWvCN5rdJ8VtaQmt5ORWUmHxQ",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "mnvbksjdksdjhkdsf",
+									"description": "Title",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "askndoineofinwoenfwe",
+									"description": "Describe your job post",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/jobs",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"jobs"
+							]
+						},
+						"description": "Post New Job"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Published Jobs",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiMSIsInVzZXJpZCI6IjkxMmRkZDUwLTIxNmYtMTFlYS04NGUwLTMzNWFlZjZjODg5ZiIsImlhdCI6MTU3NjY1NzM2NCwiZXhwIjoxNTc4NDU3MzY0fQ.V91BCxpGlLe0NDm9UbBWvCN5rdJ8VtaQmt5ORWUmHxQ",
+								"description": "Insert token with a Space ( \"1\" in Signup is for recruiter)",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/jobs/posted",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"jobs",
+								"posted"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Applications for a Posted Job",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiMSIsInVzZXJpZCI6IjVhNDM2N2UwLTIxNjItMTFlYS05ZDI0LTQxNzkxMDhmOGE5YiIsImlhdCI6MTU3NjY1MTY4OSwiZXhwIjoxNTc4NDUxNjg5fQ.SP3DCReV78xt_qZz8AaO-tFc3GLbtgNJSOcHKuGQapk"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/jobs/posted/b0ec9590-2170-11ea-8872-5576f8daabc5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"jobs",
+								"posted",
+								"b0ec9590-2170-11ea-8872-5576f8daabc5"
+							]
+						},
+						"description": "Particular Job Application"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Get all Candidates",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoyLCJ1c2VyaWQiOiJjYTYyMjQxMC0yMTZlLTExZWEtODRlMC0zMzVhZWY2Yzg4OWYiLCJpYXQiOjE1NzY2NTk3NjcsImV4cCI6MTU3NjY2MzM2N30.DigiF9gcsRdU1DIV8LVWenRxdIJ2ugYFn9dNF39UFb8",
+								"description": "<---Admin Token",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "ABC",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "fjshdkjfhksjdhfksdhkjfhksdhfkjsd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/candidates?page=1&limit=3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"candidates"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "3"
+								}
+							]
+						},
+						"description": "Get All Candidates"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Recruiters",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"description": "<--Admin Token",
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoyLCJ1c2VyaWQiOiJjYTYyMjQxMC0yMTZlLTExZWEtODRlMC0zMzVhZWY2Yzg4OWYiLCJpYXQiOjE1NzY2NTk3NjcsImV4cCI6MTU3NjY2MzM2N30.DigiF9gcsRdU1DIV8LVWenRxdIJ2ugYFn9dNF39UFb8"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/recruiters?page=1&limit=4",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recruiters"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Jobs",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoyLCJ1c2VyaWQiOiJjYTYyMjQxMC0yMTZlLTExZWEtODRlMC0zMzVhZWY2Yzg4OWYiLCJpYXQiOjE1NzY2NTk3NjcsImV4cCI6MTU3NjY2MzM2N30.DigiF9gcsRdU1DIV8LVWenRxdIJ2ugYFn9dNF39UFb8",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/jobs?page=1&limit=4",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"jobs"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "4"
+								}
+							]
+						},
+						"description": "Get All Jobs"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Job",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoyLCJ1c2VyaWQiOiJjYTYyMjQxMC0yMTZlLTExZWEtODRlMC0zMzVhZWY2Yzg4OWYiLCJpYXQiOjE1NzY2NTk3NjcsImV4cCI6MTU3NjY2MzM2N30.DigiF9gcsRdU1DIV8LVWenRxdIJ2ugYFn9dNF39UFb8"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/jobs/90ac2830-1f14-11ea-925a-079ab248802",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"jobs",
+								"90ac2830-1f14-11ea-925a-079ab248802"
+							]
+						},
+						"description": "Delete Job"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Recruiter",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoyLCJ1c2VyaWQiOiJjYTYyMjQxMC0yMTZlLTExZWEtODRlMC0zMzVhZWY2Yzg4OWYiLCJpYXQiOjE1NzY2NTk3NjcsImV4cCI6MTU3NjY2MzM2N30.DigiF9gcsRdU1DIV8LVWenRxdIJ2ugYFn9dNF39UFb8"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/recruiters/cee49f60-1c12-11ea-99f6-238fb671a8d0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recruiters",
+								"cee49f60-1c12-11ea-99f6-238fb671a8d0"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Delete Recruiters"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Candidate",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoyLCJ1c2VyaWQiOiJjYTYyMjQxMC0yMTZlLTExZWEtODRlMC0zMzVhZWY2Yzg4OWYiLCJpYXQiOjE1NzY2NTk3NjcsImV4cCI6MTU3NjY2MzM2N30.DigiF9gcsRdU1DIV8LVWenRxdIJ2ugYFn9dNF39UFb8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/candidates/dc377d60-1c10-11ea-9927-dbd7e156b0db",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"candidates",
+								"dc377d60-1c10-11ea-9927-dbd7e156b0db"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Delete Candidate"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "3b49d55a-5d2f-48b8-9d1c-2e419bbdd3f9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ca82cef4-4577-4432-a4d3-041482451669",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
