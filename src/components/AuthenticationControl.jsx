@@ -13,8 +13,7 @@ const openNotificationWithIcon = (type,message,desc) => {
         message: message,
         description:desc,
     });
-    };
-    
+    };    
     
 
     class authControl extends React.Component{
@@ -54,8 +53,6 @@ const openNotificationWithIcon = (type,message,desc) => {
                     this.state.isAuthenticated=false;
                 }
             }
-
-
 
         render(){
            return(

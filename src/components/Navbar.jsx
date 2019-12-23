@@ -58,7 +58,7 @@ class Navbar extends React.Component {
 <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <Link to={this.state.path}><img height="60" width="80"  src="http://www.thejobsportal.co.uk/assets/img/Logo@2x.png"/></Link> 
+        <Link to={this.state.path}><img height="60" width="70"  src="https://cdn.iconscout.com/icon/premium/png-256-thumb/online-job-portal-1546095-1310728.png"/></Link> 
       </div>
         <ul class=" navbar-right fixright nav"><h1><i>
           <li><Link  onClick={(e) => this.handleClick(e,to)} to={to}>{text}</Link></li>

@@ -11,11 +11,6 @@ const configMiddlewares = () => {
         })
     ]
 
-    // if (process.env.NODE_ENV === "development") {  //??
-    //     middlewares.push(logger); //arr?
-    // }
-    
     return middlewares;//arr return??
 }
-
 export default configMiddlewares();
